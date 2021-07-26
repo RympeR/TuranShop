@@ -38,7 +38,13 @@ const styles = StyleSheet.create({
         borderRadius: 15,
     },
     btnText: {
-
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        fontStyle: "normal",
+        fontWeight: "600",
+        // fontFamily: 'Montserrat',
+        color: "#FFFFFF",
+        fontSize: 14,
     },
 });
 export { GreenBtn };
