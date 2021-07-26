@@ -104,7 +104,7 @@ const MainPageScreen = () => {
       </View>
       <ScrollView style={styles.body}></ScrollView>
       <View style={styles.sellers}>
-        <SellerBlock 
+        {/* <SellerBlock 
             id={'2'}
             image={require("../../images/shop/search.png")}
             verified
@@ -116,6 +116,11 @@ const MainPageScreen = () => {
         <GreenBtn 
             text='Написать нам'
             ico={require('../../images/shop/message.png')}
+          /> */}
+        <BigCategory
+          text={'Мужская одежда'}
+          ico={require('../../images/shop/CategoryImg.png')}
+
         />
       </View>
       

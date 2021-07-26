@@ -11,25 +11,27 @@ import {
 
 type BigCategoryType = {
     text: string,
-    ico?: ImageSourcePropType
+    ico: ImageSourcePropType
 }
 const BigCategory = (props:BigCategoryType) => {
     return (
-        <TouchableHighlight onPress={()=>{}} style={styles.greenBtn}>
+        <TouchableHighlight onPress={()=>{}} style={styles.BigCategoryBlock}>
             <View style={[styles.row, styles.center]}>
-            <Text style={[styles.btnText, styles.mt10]}>{props.text}</Text>
-                {props.ico &&
+                <Text style={[styles.btnText]}>{props.text}</Text>
                     <Image 
-                    source={props.ico}
-                    style={[styles.messageIco, styles.ml8, styles.mt10]} 
+                        source={props.ico}
+                        style={[styles.categoryImg, styles.ml8]} 
                     />
-                }
+                    <Image 
+                        source={require('../images/shop/RightArrow.png')}
+                        style={[styles.rightArrow, styles.ml8]} 
+                    />
             </View>
         </TouchableHighlight>
     );
 };
 const styles = StyleSheet.create({
-    greenBtn:{
+    BigCategoryBlock:{
         backgroundColor: "#0C7952",
         width: 327,
         height: 110,
@@ -44,10 +46,14 @@ const styles = StyleSheet.create({
     mt10:{
         marginTop: 6
     },
-    messageIco:{
-        width: 40,
-        height: 40,
+    categoryImg:{
+        width: 128,
+        height: 110,
         
+    },
+    rightArrow:{
+        width: 7,
+        height: 14
     },
     center:{
         justifyContent: 'center',
@@ -60,7 +66,7 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         // fontFamily: 'Montserrat',
         color: "#FFFFFF",
-        fontSize: 14,
+        fontSize: 18,
     },
 });
 export { BigCategory };
