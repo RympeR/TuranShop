@@ -9,12 +9,11 @@ import {
   ImageSourcePropType,
 } from "react-native";
 
-type GreenBtnType = {
+type BigCategoryType = {
     text: string,
     ico?: ImageSourcePropType
 }
-
-const GreenBtn = (props:GreenBtnType) => {
+const BigCategory = (props:BigCategoryType) => {
     return (
         <TouchableHighlight onPress={()=>{}} style={styles.greenBtn}>
             <View style={[styles.row, styles.center]}>
@@ -33,7 +32,7 @@ const styles = StyleSheet.create({
     greenBtn:{
         backgroundColor: "#0C7952",
         width: 327,
-        height: 56,
+        height: 110,
         borderRadius: 15,
     },
     row: {
@@ -64,4 +63,4 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
 });
-export { GreenBtn };
+export { BigCategory };

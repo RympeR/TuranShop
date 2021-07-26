@@ -14,6 +14,7 @@ import { TouchableCategory } from '../../components/TouchableCategory';
 import { TouchableFilterText } from '../../components/TouchableFilterText';
 import { SellerBlock } from '../../components/SellerBlock';
 import { GreenBtn } from '../../components/GreenBtn';
+import { BigCategory } from '../../components/BigCategory';
 import { connect } from "react-redux";
 
 const screenWidth = Dimensions.get("screen").width;
@@ -114,7 +115,7 @@ const MainPageScreen = () => {
         />
         <GreenBtn 
             text='Написать нам'
-            ico={require("../../images/shop/search.png")}
+            ico={require('../../images/shop/message.png')}
         />
       </View>
       

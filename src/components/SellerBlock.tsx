@@ -55,12 +55,12 @@ const SellerBlock = (props:SellerBlockType) =>{
                     </Text>
                 </View>
             </View>
-            <View>
+            <TouchableHighlight underlayColor={'#F7F7F7'} onPress={()=>{console.log('pressed')}}>
                 <Image
                     source={require('../images/shop/message.png')}
                     style={[styles.messageIco, styles.mt30, styles.ml50]} 
                 />
-            </View>
+            </TouchableHighlight>
         </View>
     )
 }
