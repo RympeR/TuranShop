@@ -29,39 +29,4 @@ const GreenBtn = (props:GreenBtnType) => {
         </TouchableHighlight>
     );
 };
-const styles = StyleSheet.create({
-    greenBtn:{
-        backgroundColor: "#0C7952",
-        width: 327,
-        height: 56,
-        borderRadius: 15,
-    },
-    row: {
-        flexDirection: "row",
-    },
-    ml8:{
-        marginLeft: 8
-    },
-    mt10:{
-        marginTop: 6
-    },
-    messageIco:{
-        width: 40,
-        height: 40,
-        
-    },
-    center:{
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    btnText: {
-        
-        textAlignVertical: 'center',
-        fontStyle: "normal",
-        fontWeight: "600",
-        // fontFamily: 'Montserrat',
-        color: "#FFFFFF",
-        fontSize: 14,
-    },
-});
 export { GreenBtn };

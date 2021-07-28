@@ -35,34 +35,5 @@ const TouchableFilterText = (props:TouchableFilterTextType) =>{
       </TouchableHighlight>
     )
 }
-const styles = StyleSheet.create({
-    ml20:{
-        marginLeft: 20,
-    },
-    ml10:{
-        marginLeft: 10,
-    },
-    mt2:{
-      marginTop: 2
-    },
-    pr8:{
-      paddingRight: 8
-    },
-    smallText:{
-      fontStyle: "normal",
-      fontWeight: "600",
-      // fontFamily: 'Montserrat',
-      color: "#000000",
-      fontSize: 14,
-    },
-    filterCategory:{
-      
-    },
-    gradient:{
-      minWidth: 25,
-      height: 25,
-      borderRadius: 15,
-    }
-})
 
 export { TouchableFilterText };
