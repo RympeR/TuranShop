@@ -116,12 +116,8 @@ const MainPageScreen = () => {
         <GreenBtn 
             text='Написать нам'
             ico={require('../../images/shop/message.png')}
-          /> */}
-        <BigCategory
-          text={'Мужская одежда'}
-          ico={require('../../images/shop/CategoryImg.png')}
-
-        />
+        /> */}
+        
       </View>
       
     </View>

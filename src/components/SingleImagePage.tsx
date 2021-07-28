@@ -5,8 +5,12 @@ import {
   Image,
   TouchableHighlight,
   StyleSheet,
+  Dimensions,
   ImageSourcePropType,
 } from "react-native";
+
+const screenWidth = Dimensions.get("screen").width;
+const screenHeight = Dimensions.get("screen").height;
 
 type SingleImagePageType = {
     title: string,
@@ -19,14 +23,14 @@ const SingleImagePage = (props:SingleImagePageType) => {
         <View style={[styles.fl1, styles.container, styles.column, styles.center, styles.mt50, styles.justifySpaceEvenly]}>
             <Image
                 source={props.img}
-                style={[styles.pageImg]}
+                style={[styles.pageImg, styles.mtp10, styles.mb50]}
             />
-            <View style={[styles.center, styles.textBlock]}>
+            <View style={[styles.center, styles.textBlock, styles.mb30]}>
                 <Text style={[styles.title, styles.center]}>
                     {props.title}
                 </Text>
             </View>
-            <View>
+            <View style={[styles.mb30]}>
                 <Text style={styles.text}>
                     {props.text}
                 </Text>
@@ -40,6 +44,15 @@ const SingleImagePage = (props:SingleImagePageType) => {
     );
 };
 const styles = StyleSheet.create({
+    mtp10:{
+        marginTop: screenHeight * 0.1,
+    },
+    mb50:{
+        marginBottom: 50
+    },
+    mb30:{
+        marginBottom: 30
+    },
     container:{
         // maxWidth: 327,
         // maxHeight: 517,
@@ -111,7 +124,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     justifySpaceEvenly:{
-        justifyContent: 'space-evenly',
+        // justifyContent: 'space-evenly',
+        justifyContent: 'flex-start',
     },
     center:{
         justifyContent: 'center',
