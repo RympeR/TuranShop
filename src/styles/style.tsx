@@ -233,7 +233,6 @@ const styles = StyleSheet.create({
     minHeight: 57,
     borderRadius: 15,
   },
-  //! check his
   BigCategoryBlockContainer: {
     backgroundColor: "#0C7952",
     width: 327,
@@ -396,6 +395,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    // paddingTop: 50
   },
   headerText: {
     fontFamily: 'mt-bold',

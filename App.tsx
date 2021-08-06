@@ -6,9 +6,9 @@ import { SingleImagePage } from "./src/components/SingleImagePage";
 import { Cart } from "./src/screens/shop/Cart";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { styles } from "./src/styles/style";
 import * as Font from "expo-font";
 import AppLoading from 'expo-app-loading';
+import Navigator from './router';
 
 const Stack = createNativeStackNavigator();
 const fonts = () => Font.loadAsync({
@@ -24,23 +24,7 @@ export default function App() {
 
   if (font){
       return (
-        <CategoriesScreen />
-        // <NavigationContainer>
-        //   <Stack.Navigator
-        //     screenOptions={{
-        //       headerShown: false,
-        //     }}
-        //     initialRouteName="Home"
-        //   >
-        //     <Stack.Screen
-        //       name="Home"
-        //       component={MainPageScreen}
-        //       options={{ title: "Home" }}
-        //     />
-        //     <Stack.Screen name="Cart" component={Cart} />
-        //     <Stack.Screen name="EmptyCart" component={SingleImagePage} />
-        //   </Stack.Navigator>
-        // </NavigationContainer>
+        <Navigator />
       );
   } else {
     return (

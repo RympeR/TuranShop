@@ -26,7 +26,7 @@ import {
 
 const screenWidth = Dimensions.get("screen").width;
 
-const MainPageScreen = () => {
+const MainPageScreen = ({ navigation }) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [index, setIndex] = useState(0);
   const cm = computeMargin;
@@ -37,7 +37,6 @@ const MainPageScreen = () => {
     setIndex(el);
     console.log(el);
   };
-
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -83,9 +82,14 @@ const MainPageScreen = () => {
             <Text style={[styles.blackSubtitle, cm("l", 30), {}]}>
               Категории
             </Text>
-            <Text style={[styles.greenText, cm("r", 30), cm("t", 5), {}]}>
-              Больше
-            </Text>
+            <TouchableHighlight
+              underlayColor={'#EFEEF2'}
+              onPress={() =>{navigation.navigate('categories');}}
+            >
+              <Text style={[styles.greenText, cm("r", 30), cm("t", 5), {}]}>
+                Больше
+              </Text>
+            </TouchableHighlight>
           </View>
 
           <ScrollView 
@@ -175,9 +179,11 @@ const MainPageScreen = () => {
             <Text style={[styles.blackSubtitle, cm("l", 10), {}]}>
               Продавцы
             </Text>
-            <Text style={[styles.greenText, cm("r", 10), cm("t", 5), {}]}>
-              Больше
-            </Text>
+            <TouchableHighlight>
+              <Text style={[styles.greenText, cm("r", 10), cm("t", 5), {}]}>
+                Больше
+              </Text>
+            </TouchableHighlight>
           </View>
           <SellerBlock
             id={"2"}
