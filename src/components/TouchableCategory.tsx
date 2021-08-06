@@ -7,7 +7,7 @@ import {
   StyleSheet,
   ImageSourcePropType,
 } from "react-native";
-
+import { styles } from '../styles/style'
 type TouchableCategoryType = {
     id: string,
     image: ImageSourcePropType,

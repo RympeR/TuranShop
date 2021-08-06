@@ -8,7 +8,7 @@ import {
   Dimensions,
   ImageSourcePropType,
 } from "react-native";
-
+import { styles } from '../styles/style'
 const screenWidth = Dimensions.get("screen").width;
 const screenHeight = Dimensions.get("screen").height;
 
@@ -23,7 +23,7 @@ const SingleImagePage = (props:SingleImagePageType) => {
         <View style={[styles.fl1, styles.container, styles.column, styles.center, styles.mt50, styles.justifySpaceEvenly]}>
             <Image
                 source={props.img}
-                style={[styles.pageImg, styles.mtp10, styles.mb50]}
+                style={[styles.pageImg, styles.mt10p, styles.mb50]}
             />
             <View style={[styles.center, styles.textBlock, styles.mb30]}>
                 <Text style={[styles.title, styles.center]}>
