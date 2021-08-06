@@ -46,10 +46,15 @@ const MainPageScreen = ({ navigation }) => {
             style={[styles.topIcon, cm('l', 10)]}
             source={require("../../images/shop/search.png")}
           />
-          <Image
-            style={[styles.topIcon, cm('r', 60)]}
-            source={require("../../images/shop/shopping-cart.png")}
-          />
+          <TouchableHighlight
+              underlayColor={'#EFEEF2'}
+              style={[styles.topIcon, cm('r', 60)]}
+              onPress={() =>{navigation.navigate('cart');}}
+            >
+            <Image
+              source={require("../../images/shop/shopping-cart.png")}
+              />
+          </TouchableHighlight>
         </View>
         <Carousel
           autoplay={true}

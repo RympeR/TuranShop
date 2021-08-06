@@ -14,13 +14,6 @@ import {
   computePadding,
   computeMarginScreenPercent,
 } from "../styles/style";
-import {
-  useFonts,
-  Montserrat_400Regular,
-  Montserrat_500Medium,
-  Montserrat_700Bold,
-  Montserrat_600SemiBold,
-} from "@expo-google-fonts/montserrat";
 
 type CartItemType = {
   image: ImageSourcePropType;

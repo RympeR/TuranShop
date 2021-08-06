@@ -142,6 +142,13 @@ const styles = StyleSheet.create({
     height: 57,
     borderRadius: 15,
   },
+  headerTitle:{
+    fontFamily: 'mt-bold',
+    fontSize: 17
+  },
+  alignCenter:{
+    textAlign: 'center',
+  },
   titleBlock: {
     maxHeight: 66,
     maxWidth: 327,
