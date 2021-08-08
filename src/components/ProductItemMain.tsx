@@ -14,9 +14,9 @@ import {
   computePadding,
   computeMarginScreenPercent,
 } from "../styles/style";
-import { LinearGradient } from "expo-linear-gradient";
+import {LinearGradient} from 'expo-linear-gradient';
 
-type ProductItemType = {
+type ProductItemMainType = {
   image: ImageSourcePropType;
   name: string;
   id?: string;
@@ -25,36 +25,25 @@ type ProductItemType = {
   full_price?: number;
   rate: number;
   reply_amount: number;
-  main: boolean;
 };
 
-const ProductItem = (props: ProductItemType) => {
+const ProductItemMain = (props: ProductItemMainType) => {
   const cm = computeMargin;
   const cp = computePadding;
   const cmp = computeMarginScreenPercent;
   return (
-    <View
-      style={[
-        styles.productItemBlock,
-        cm("b", 30),
-        styles.column,
-        props.main ? {} : styles.cap,
-      ]}
-    >
-      {props.discount_amount && (
+    <View style={[styles.productItemMainBlock, cm('b', 30), styles.column]}>
+      {props.discount_amount &&
         <LinearGradient
-          start={[0.0, 0.0]}
-          end={[1.0, 1.0]}
-          style={[styles.discountBlock, cm("t", 15), cm("l", 10)]}
-          colors={["#0C7952", "#289A71"]}
-        >
-          <View style={[styles.row, styles.center]}>
-            <Text style={[styles.discountText, cm("t", 12)]}>
-              -{props.discount_amount}%
-            </Text>
-          </View>
+            start={[0.0, 0.0]}
+            end={[1.0, 1.0]}
+            style={[styles.discountBlock, cm('t', 15), cm('l', 10)]}
+            colors={['#0C7952', '#289A71']} >
+            <View style={[styles.row, styles.center]}>
+                <Text style={[styles.discountText,cm('t', 12),]}>-{props.discount_amount}%</Text>
+            </View>
         </LinearGradient>
-      )}
+      }
       <Image
         source={props.image}
         style={[
@@ -75,34 +64,26 @@ const ProductItem = (props: ProductItemType) => {
           style={[styles.rateIcon, styles.mt5, styles.ml5]}
         />
         <Text
-          style={[styles.fullPriceText, styles.fw500, styles.mt4, cm('l', 3)]}
+          style={[styles.fullPriceText, styles.fw500, styles.mt4, styles.ml10]}
         >
           {props.reply_amount} отзывов
         </Text>
       </View>
       <View style={[styles.row]}>
-        <Text style={[styles.title_18, cmp("l", 4), cmp("t", 1)]}>
-          {props.price}
-        </Text>
-        <Image
-          source={require("../images/shop/TuranImg.png")}
-          style={[styles.icon19x23, cm("t", 12), cm("l", 6)]}
-        />
-        {props.full_price && (
-          <Text
-            style={[
-              styles.fullPriceText,
-              styles.strokeThroughText,
-              styles.fw500,
-              cm("t", 12),
-              cm("l", 12),
-            ]}
-          >
-            {props.full_price}
-          </Text>
-        )}
+          <Text style={[styles.title_18, cmp('l', 4), cmp('t', 1)]}>{props.price}</Text>
+          <Image
+            source={require("../images/shop/TuranImg.png")}
+            style={[styles.icon19x23, cm("t", 12), cm("l", 6)]}
+          />
+          { props.full_price &&
+            <Text
+            style={[styles.fullPriceText,styles.strokeThroughText, styles.fw500, cm("t", 12),cm("l", 12), ]}
+            >
+              {props.full_price}
+            </Text>
+          }
       </View>
     </View>
   );
 };
-export { ProductItem };
+export { ProductItemMain };

@@ -626,15 +626,30 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   productItemBlock: {
+    width: 156,
+    height: 286,
+    backgroundColor: "rgba(255, 255, 255, 1)",
+    borderRadius: 15,
+    marginLeft: 20,
+  },
+  productItemMainBlock: {
     width: 188,
     height: 306,
     backgroundColor: "rgba(255, 255, 255, 1)",
     borderRadius: 15,
     marginLeft: 20,
   },
+  viewList: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  cap: {
+    maxWidth: '40%'
+  },
   productImage: {
-    height: 171,
-    width: 125,
+    height: 147,
+    width: 108,
   },
   alignSelfCenter: {
     alignSelf: "center",

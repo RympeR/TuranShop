@@ -162,6 +162,7 @@ const MainPageScreen = ({ navigation }) => {
                 full_price={9000}
                 rate={3.5}
                 reply_amount={125}
+                main
             />
             <ProductItem
                 image={require("../../images/shop/productItem.png")}
@@ -170,6 +171,7 @@ const MainPageScreen = ({ navigation }) => {
                 price={7499}
                 rate={3.5}
                 reply_amount={125}
+                main
             />
             <ProductItem
                 image={require("../../images/shop/productItem.png")}
@@ -178,6 +180,7 @@ const MainPageScreen = ({ navigation }) => {
                 price={7499}
                 rate={3.5}
                 reply_amount={125}
+                main
             />
           </ScrollView>
         </View>

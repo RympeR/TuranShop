@@ -34,33 +34,33 @@ const CategoriesScreen = ({ navigation }) => {
           style={[
             styles.center,
             cm("b", 40),
-            cm("l", 15),
           ]}
         >
           <BigCategory
             text={"Тестовая категория"}
             ico={require("../../images/shop/CategoryImg.png")}
+            move_location={'products'}
+            navigation={navigation}
           />
           <BigCategory
             text={"Тестовая категория"}
             ico={require("../../images/shop/CategoryImg.png")}
+            move_location={'products'}
+            navigation={navigation}
           />
           <BigCategory
             text={"Тестовая категория"}
             ico={require("../../images/shop/CategoryImg.png")}
+            move_location={'products'}
+            navigation={navigation}
           />
           <BigCategory
             text={"Тестовая категория"}
             ico={require("../../images/shop/CategoryImg.png")}
+            move_location={'products'}
+            navigation={navigation}
           />
-          <BigCategory
-            text={"Тестовая категория"}
-            ico={require("../../images/shop/CategoryImg.png")}
-          />
-          <BigCategory
-            text={"Тестовая категория"}
-            ico={require("../../images/shop/CategoryImg.png")}
-          />
+
         </View>
       </ScrollView>
     </View>
