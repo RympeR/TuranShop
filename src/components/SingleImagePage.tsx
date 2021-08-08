@@ -8,36 +8,51 @@ import {
   Dimensions,
   ImageSourcePropType,
 } from "react-native";
-import { styles } from '../styles/style'
-const screenWidth = Dimensions.get("screen").width;
-const screenHeight = Dimensions.get("screen").height;
+import {
+    styles,
+    computeMargin,
+    computePadding,
+    computeMarginScreenPercent,
+    computePercentMaxHeight,
+  } from "../styles/style";
+
 
 type SingleImagePageType = {
     title: string,
     text: string,
     btntext: string,
-    img: ImageSourcePropType
+    img: ImageSourcePropType,
+    move_location: string,
+    navigation: any,
 }
 const SingleImagePage = (props:SingleImagePageType) => {
+    const cm = computeMargin;
+    const cmp = computeMarginScreenPercent;
+    const cpmh = computePercentMaxHeight;
+    const cp = computePadding;
+    function move_to(url: string, navigation:any, params: object={}){
+        console.warn('pressed')
+        navigation.navigate(url, params);
+    }
     return (
         <View style={[styles.fl1, styles.container, styles.column, styles.center, styles.mt50, styles.justifySpaceEvenly]}>
             <Image
                 source={props.img}
                 style={[styles.pageImg, styles.mt10p, styles.mb50]}
             />
-            <View style={[styles.center, styles.textBlock, styles.mb30]}>
-                <Text style={[styles.title, styles.center]}>
+            <View style={[styles.center, styles.textBlock, cm('b', 50)]}>
+                <Text style={[styles.title_27, styles.center]}>
                     {props.title}
                 </Text>
             </View>
-            <View style={[styles.mb30]}>
+            <View style={[cm('b', 70)]}>
                 <Text style={styles.text}>
                     {props.text}
                 </Text>
             </View>
-            <TouchableHighlight onPress={()=>{}} style={styles.BigCategoryBlock}>
+            <TouchableHighlight onPress={()=>{move_to(props.move_location, props.navigation)}} style={styles.SingleBtnBlock}>
                 <View style={[styles.fl1, styles.row, styles.center]}>
-                    <Text style={[styles.btnText, styles.center]}>{props.btntext}</Text>
+                    <Text style={[styles.font17SBold, styles.center]}>{props.btntext}</Text>
                 </View>
             </TouchableHighlight>
         </View>

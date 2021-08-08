@@ -142,25 +142,46 @@ const styles = StyleSheet.create({
     height: 57,
     borderRadius: 15,
   },
-  headerTitle:{
-    fontFamily: 'mt-bold',
-    fontSize: 17
+  SingleBtnBlock: {
+    backgroundColor: "#0C7952",
+    width: 327,
+    height: 57,
+    borderRadius: 15,
   },
-  alignCenter:{
-    textAlign: 'center',
+  headerTitle: {
+    fontFamily: "mt-bold",
+    fontSize: 17,
+  },
+  settingsHighlight: {
+    width: 42,
+    height: 42,
+    backgroundColor: "#F7F7F7",
+    borderRadius: 15,
+  },
+  settingsImg: {
+    width: 20,
+    height: 20,
+  },
+  font17SBold: {
+    fontFamily: "mt-sbold",
+    fontSize: 17,
+    color: "#FFFFFF",
+  },
+  alignCenter: {
+    textAlign: "center",
   },
   titleBlock: {
     maxHeight: 66,
     maxWidth: 327,
   },
   textBlock: {
-    maxHeight: 40,
-    maxWidth: 309,
+    maxHeight: 66,
+    maxWidth: 327,
   },
+
   title_27: {
     fontStyle: "normal",
-    fontWeight: "700",
-    // fontFamily: 'Montserrat',
+    fontFamily: "mt-bold",
     color: "#000000",
     fontSize: 27,
     textAlign: "center",
@@ -171,9 +192,7 @@ const styles = StyleSheet.create({
   text: {
     maxWidth: 309,
     textAlign: "center",
-    fontStyle: "normal",
-    fontWeight: "400",
-    // fontFamily: 'Montserrat',
+    fontFamily: "mt-normal",
     color: "#000000",
     fontSize: 14,
   },
@@ -210,8 +229,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   justifySpaceEvenly: {
-    // justifyContent: 'space-evenly',
-    justifyContent: "flex-start",
+    justifyContent: "space-evenly",
+    // justifyContent: "flex-start",
   },
   center: {
     justifyContent: "center",
@@ -219,19 +238,19 @@ const styles = StyleSheet.create({
   },
   btnText: {
     textAlignVertical: "center",
-    fontFamily:'mt-sbold',
+    fontFamily: "mt-sbold",
     color: "#FFFFFF",
     fontSize: 14,
   },
   bigCategoryText: {
     textAlignVertical: "center",
-    fontFamily:'mt-sbold',
+    fontFamily: "mt-sbold",
     color: "#FFFFFF",
     fontSize: 18,
   },
   discountText: {
     textAlignVertical: "center",
-    fontFamily:'mt-sbold',
+    fontFamily: "mt-sbold",
     color: "#FFFFFF",
     fontSize: 14,
   },
@@ -319,19 +338,25 @@ const styles = StyleSheet.create({
     width: 15,
     height: 15,
   },
-  discountBlock:{
+  discountBlock: {
     width: 48,
     height: 48,
     position: "absolute",
     zIndex: 2,
-    borderRadius: 15
+    borderRadius: 15,
   },
   verifyIcon: {},
   messageIco: {
     width: 40,
     height: 40,
   },
-  greenBtnIco:{
+  border15: {
+    borderRadius: 15,
+  },
+  posAbsolute: {
+    position: "absolute",
+  },
+  greenBtnIco: {
     width: 20,
     height: 20,
   },
@@ -339,17 +364,17 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   smallPureText: {
-    fontFamily: 'mt-normal',
+    fontFamily: "mt-normal",
     color: "#000000",
     fontSize: 13,
   },
   title_18: {
-    fontFamily: 'mt-sbold',
+    fontFamily: "mt-sbold",
     color: "#000000",
     fontSize: 18,
   },
   title_16: {
-    fontFamily: 'mt-sbold',
+    fontFamily: "mt-sbold",
     color: "#000000",
     fontSize: 16,
   },
@@ -365,8 +390,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.07,
     shadowRadius: 2,
     elevation: 2,
-    minHeight: 103,
-    minWidth: 327,
+    height: 103,
+    width: 327,
   },
   smallBoldText: {
     fontStyle: "normal",
@@ -390,7 +415,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
   blackSubtitle: {
-    fontFamily: 'mt-sbold',
+    fontFamily: "mt-sbold",
     color: "#000000",
     fontSize: 18,
   },
@@ -405,7 +430,7 @@ const styles = StyleSheet.create({
     // paddingTop: 50
   },
   headerText: {
-    fontFamily: 'mt-bold',
+    fontFamily: "mt-bold",
     color: "#000000",
     fontSize: 24,
     maxWidth: screenWidth - 100,
@@ -423,22 +448,39 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   categoryPreBlock: {
-    flex:5,
+    flex: 5,
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  greenText:{
-    fontSize: 14,
-    fontFamily: 'mt-medium',
-    color: '#22846F'
+  searchSection: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
   },
-  mediumText:{
-    fontSize: 14,
-    fontFamily: 'mt-medium',
+  searchIcon: {
+    padding: 10,
   },
-  normal13Text:{
+  searchInput: {
+    color: "#424242",
+    width: 271,
+    height: 42,
+    backgroundColor: "#F7F7F7",
+    borderRadius: 15,
+  },
+  greenText: {
+    fontSize: 14,
+    fontFamily: "mt-medium",
+    color: "#22846F",
+  },
+  mediumText: {
+    fontSize: 14,
+    fontFamily: "mt-medium",
+  },
+  normal13Text: {
     fontSize: 13,
-    fontFamily: 'mt-normal',
+    fontFamily: "mt-normal",
   },
   topIcon: {
     marginTop: 60,
@@ -447,12 +489,12 @@ const styles = StyleSheet.create({
     height: 26,
     width: 26,
   },
-  fullPriceText:{
-    color: 'rgba(0, 0, 0, 0.4)',
-    fontFamily: 'mt-normal',
+  fullPriceText: {
+    color: "rgba(0, 0, 0, 0.4)",
+    fontFamily: "mt-normal",
   },
-  strokeThroughText:{
-    textDecorationLine: 'line-through',
+  strokeThroughText: {
+    textDecorationLine: "line-through",
   },
   slider: {
     flex: 1,
@@ -460,18 +502,18 @@ const styles = StyleSheet.create({
     width: screenWidth - 0.2 * screenWidth,
     alignItems: "center",
     borderRadius: 50,
-    maxHeight: 140
+    maxHeight: 140,
   },
   category: {
     marginTop: 10,
     flex: 2,
   },
 
-  justifyLeft:{
-    justifyContent: 'flex-start'
+  justifyLeft: {
+    justifyContent: "flex-start",
   },
-  textLeft:{
-    textAlign: 'left'
+  textLeft: {
+    textAlign: "left",
   },
   body: {
     flex: 5,
@@ -479,10 +521,10 @@ const styles = StyleSheet.create({
   sellers: {
     flex: 4,
   },
-  sliderImage:{
+  sliderImage: {
     width: 327,
     height: 140,
-    borderRadius: 15
+    borderRadius: 15,
   },
   slide1: {
     borderRadius: 15,
@@ -525,7 +567,7 @@ const styles = StyleSheet.create({
   },
   categoryTitle: {
     marginTop: 9,
-    fontFamily: 'mt-medium',
+    fontFamily: "mt-medium",
     maxWidth: 80,
     fontSize: 12,
   },
@@ -556,15 +598,15 @@ const styles = StyleSheet.create({
     paddingRight: 8,
   },
   smallText: {
-    fontFamily: 'mt-normal',
+    fontFamily: "mt-normal",
     color: "#000000",
     fontSize: 14,
   },
   smallSBoldText: {
-    fontFamily: 'mt-sbold',
+    fontFamily: "mt-sbold",
     color: "#000000",
     fontSize: 14,
-    lineHeight: 20
+    lineHeight: 20,
   },
   filterCategory: {},
   icon16: {
@@ -583,16 +625,25 @@ const styles = StyleSheet.create({
     height: 25,
     borderRadius: 15,
   },
-  productItemBlock:{
+  productItemBlock: {
     width: 188,
     height: 306,
-    backgroundColor: 'rgba(255, 255, 255, 1)',
+    backgroundColor: "rgba(255, 255, 255, 1)",
     borderRadius: 15,
-    marginLeft: 20
+    marginLeft: 20,
   },
-  productImage:{
+  productImage: {
     height: 171,
-    width: 125
+    width: 125,
+  },
+  alignSelfCenter: {
+    alignSelf: "center",
+  },
+  headerLinkTitleBlock: {
+    position: "absolute",
+    zIndex: 0,
+    alignItems: "center",
+    width: screenWidth,
   },
 });
 

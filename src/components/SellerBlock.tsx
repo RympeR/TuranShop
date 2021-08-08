@@ -77,14 +77,15 @@ const SellerBlock = (props: SellerBlockType) => {
         </View>
       </View>
       <TouchableHighlight
-        underlayColor={"#F7F7F7"}
+        // underlayColor={"#F7F7F7"}
         onPress={() => {
           console.log("pressed");
         }}
+        style={[ styles.posAbsolute, styles.mt30, cmp('l', 75), styles.border15]}
       >
         <Image
           source={require("../images/shop/message.png")}
-          style={[styles.messageIco, styles.mt30, styles.ml50]}
+          style={[styles.messageIco,]}
         />
       </TouchableHighlight>
     </View>

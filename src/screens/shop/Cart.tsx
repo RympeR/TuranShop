@@ -23,6 +23,7 @@ import {
   computePercentMaxHeight,
 } from "../../styles/style";
 import  { HeaderBack }  from '../../components/HeaderBack';
+import  { SingleImagePage }  from '../../components/SingleImagePage';
 
 type CartItemType = {
   image: ImageSourcePropType;
@@ -34,6 +35,7 @@ type CartItemType = {
 };
 
 const Cart = ({ navigation }) => {
+  
   const cm = computeMargin;
   const cmp = computeMarginScreenPercent;
   const cpmh = computePercentMaxHeight;
@@ -81,24 +83,37 @@ const Cart = ({ navigation }) => {
         navigation={navigation}
         title={'Корзина'}
       />
-      <ScrollView style={[cmp('t', 10), cpmh(68)]}>
-        {items.map((props:CartItemType, index:number) =>(
-            <CartItem
-              id={props.id}
-              image={props.image}
-              name={props.name}
-              seller={props.seller}
-              product_amount={props.product_amount}
-              cost={props.cost}
-              key={index}
-            />
-          ))}
-      </ScrollView>
-      <GreenBtn text={`Оформить заказ ${total_cost} $`} />
-      <Text style={[cm("t", 20), cm("b", 30), styles.marginCenterHorizontal]}>
-        Продолжить попкупки
-      </Text>
-    </SafeAreaView>
+       {items.length > 0 ? (
+         <>
+          <ScrollView style={[cmp('t', 10), cpmh(68)]}>
+          {items.map((props:CartItemType, index:number) =>(
+              <CartItem
+                id={props.id}
+                image={props.image}
+                name={props.name}
+                seller={props.seller}
+                product_amount={props.product_amount}
+                cost={props.cost}
+                key={index}
+              />
+            ))}
+          </ScrollView>
+          <GreenBtn text={`Оформить заказ ${total_cost} $`} />
+          <Text style={[cm("t", 20), cm("b", 30), styles.marginCenterHorizontal]}>
+            Продолжить попкупки
+          </Text>
+        </>
+      ) : (
+        <SingleImagePage
+          title={"Ваша корзина пуста"}
+          text={"Чтобы оформить заказ добавьте желаемые заказы в корзину"}
+          btntext={"Перейти к товарам"}
+          img={require('../../images/shop/SinglePageImage.png')}
+          move_location={'home'}
+          navigation={navigation}
+        />
+      )}
+      </SafeAreaView>
   );
 };
 

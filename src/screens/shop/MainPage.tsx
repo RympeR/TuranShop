@@ -15,7 +15,6 @@ import { TouchableFilterText } from "../../components/TouchableFilterText";
 import { SellerBlock } from "../../components/SellerBlock";
 import { GreenBtn } from "../../components/GreenBtn";
 import { ProductItem } from "../../components/ProductItem";
-import { BigCategory } from "../../components/BigCategory";
 import { connect } from "react-redux";
 import {
   styles,
@@ -107,27 +106,31 @@ const MainPageScreen = ({ navigation }) => {
               id={"1"}
               image={require("../../images/shop/search.png")}
               text="женская одежда"
+              move_location={'products'}
+              navigation={navigation}
             />
             <TouchableCategory
               id={"2"}
               image={require("../../images/shop/search.png")}
-              text="женская одежда"
+              text="женская тестовая"
+              move_location={'products'}
+              navigation={navigation}
             />
             <TouchableCategory
-              id={"3"}
+              id={"1"}
               image={require("../../images/shop/search.png")}
-              text="женская одежда"
+              text="женская teцц"
+              move_location={'products'}
+              navigation={navigation}
             />
             <TouchableCategory
-              id={"4"}
+              id={"2"}
               image={require("../../images/shop/search.png")}
-              text="женская одежда"
+              text="женская eцвe"
+              move_location={'products'}
+              navigation={navigation}
             />
-            <TouchableCategory
-              id={"5"}
-              image={require("../../images/shop/search.png")}
-              text="женская одежда"
-            />
+            
           </ScrollView>
           <ScrollView 
             showsVerticalScrollIndicator={false}
@@ -184,7 +187,11 @@ const MainPageScreen = ({ navigation }) => {
             <Text style={[styles.blackSubtitle, cm("l", 10), {}]}>
               Продавцы
             </Text>
-            <TouchableHighlight>
+            <TouchableHighlight
+              underlayColor={'#EFEEF2'}
+              onPress={() =>{navigation.navigate('sellers');}}
+            >
+              
               <Text style={[styles.greenText, cm("r", 10), cm("t", 5), {}]}>
                 Больше
               </Text>
