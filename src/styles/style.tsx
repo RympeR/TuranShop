@@ -660,6 +660,39 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: screenWidth,
   },
+  displayNone: {
+    display: "none"
+  },
+  filterFullScreenBlock:{
+    height: '100%',
+    zIndex: 3,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    backgroundColor: '#EFEEF2',
+  },
+  regular600: {
+    fontFamily: 'mt-bold',
+    fontSize: 16,
+  },
+  imageStyle: {
+    padding: 10,
+    margin: 5,
+    // height: 25,
+    // width: 25,
+    resizeMode: 'stretch',
+    alignItems: 'center',
+  },
+  sectionStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderWidth: 0.5,
+    borderColor: '#000',
+    height: 40,
+    borderRadius: 5,
+    margin: 10,
+  },
 });
 
 export {
