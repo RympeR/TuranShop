@@ -3,16 +3,14 @@ import {
   View,
   Text,
   Image,
-  Button,
   TouchableHighlight,
   ScrollView,
   Dimensions,
-  StyleSheet,
   TextInput,
   FlatList,
   ImageSourcePropType,
 } from "react-native";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import {
   styles,
   computeMargin,
@@ -20,12 +18,13 @@ import {
   computeMarginScreenPercent,
 } from "../../styles/style";
 import { HeaderBack } from "../../components/HeaderBack";
-import { SellerBlock } from "../../components/SellerBlock";
 import { ProductItem } from "../../components/ProductItem";
 import { Modalize } from "react-native-modalize";
 import { LinearGradient } from "expo-linear-gradient";
+import { Icon } from "react-native-elements";
+import { loadProductsAsync } from "../../redux/reducers/product/product.thunks";
+
 const screenWidth = Dimensions.get("screen").width;
-import { Icon } from 'react-native-elements'
 
 type ProductItemType = {
   image: ImageSourcePropType;
@@ -57,6 +56,7 @@ const ProductPageScreen = ({ route, navigation }) => {
   const handleClick = () => {
     setPressed(!pressed);
   };
+
   let filters = {
     sortBy: false,
     status: false,
@@ -65,91 +65,24 @@ const ProductPageScreen = ({ route, navigation }) => {
     brand: false,
     country_creator: false,
   };
-  let items: ProductItemType[] = [
-    {
-      image: require("../../images/shop/productItem.png"),
-      name: "Iphone xs max",
-      id: "2",
-      price: 7499,
-      discount_amount: 35,
-      full_price: 9000,
-      rate: 3.5,
-      reply_amount: 125,
-      main: false,
-    },
-    {
-      image: require("../../images/shop/productItem.png"),
-      name: "Iphone xs max",
-      id: "1",
-      price: 7499,
-      discount_amount: 35,
-      full_price: 9000,
-      rate: 3.5,
-      reply_amount: 125,
-      main: false,
-    },
-    {
-      image: require("../../images/shop/productItem.png"),
-      name: "Iphone xs max",
-      id: "1",
-      price: 7499,
-      discount_amount: 35,
-      full_price: 9000,
-      rate: 3.5,
-      reply_amount: 125,
-      main: false,
-    },
-    {
-      image: require("../../images/shop/productItem.png"),
-      name: "Iphone xs max",
-      id: "1",
-      price: 7499,
-      discount_amount: 35,
-      full_price: 9000,
-      rate: 3.5,
-      reply_amount: 125,
-      main: false,
-    },
-    {
-      image: require("../../images/shop/productItem.png"),
-      name: "Iphone xs max",
-      id: "1",
-      price: 7499,
-      discount_amount: 35,
-      full_price: 9000,
-      rate: 3.5,
-      reply_amount: 125,
-      main: false,
-    },
-  ];
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadProductsAsync());
+  }, [dispatch]);
+  const items = useSelector((state) => state.product.products).results;
+  
   let sortBy: string[] = ["Ретйинг", "Популярные", "Акции", "Новинки"];
   let brands: string[] = ["brand1", "brand2", "brand3", "brand4"];
   let countries: string[] = ["country1", "country2", "country3", "country4"];
-  const _keyExtractor = ({ obj }: { obj: ProductItemType }) => {
-    return obj.id;
-  };
-  const _renderItem = ({ obj }: { obj: ProductItemType }) => {
-    <ProductItem
-      image={obj.image}
-      name={obj.name}
-      id={obj.id}
-      price={obj.price}
-      rate={obj.rate}
-      reply_amount={obj.reply_amount}
-      main={obj.main}
-    />;
-  };
+
+
   return (
     <View>
       <HeaderBack navigation={navigation} title={route.params.title} shop_ico />
       <View style={[styles.row, cm("t", 70), cm("l", 10), cm("b", 20)]}>
-        {/* <Icon style={styles.searchIcon} name="ios-search" size={20} color="#000"/> */}
         <View style={[styles.row]}>
-
-          <Icon 
-            name='search'
-            style={styles.imageStyle}
-            />
+          <Icon name="search" style={styles.imageStyle} />
           <TextInput
             style={[styles.searchInput]}
             placeholder="Поиск"
@@ -157,7 +90,7 @@ const ProductPageScreen = ({ route, navigation }) => {
             value={productSearch}
             placeholderTextColor="rgba(0, 0, 0, 1);"
             selectTextOnFocus
-            />
+          />
         </View>
         <TouchableHighlight
           style={[styles.settingsHighlight, cm("l", 8)]}
@@ -171,21 +104,21 @@ const ProductPageScreen = ({ route, navigation }) => {
         </TouchableHighlight>
       </View>
       <FlatList
-        data={items.filter((item) =>
+        data={items.filter((item: any) =>
           productSearch != ""
-            ? item.name.toLowerCase().includes(productSearch.toLowerCase())
-            : item.name
+            ? item.title.toLowerCase().includes(productSearch.toLowerCase())
+            : item.title
         )}
         keyExtractor={(item, index: number) => index.toString()} //has to be unique
         renderItem={({ item }) => (
           <ProductItem
-            image={item.image}
-            name={item.name}
-            id={item.id}
-            price={item.price}
-            rate={item.rate}
-            reply_amount={item.reply_amount}
-            main={item.main}
+            image={item.preview}
+            name={item.title}
+            id={item.seller.id}
+            price={item.calc_price}
+            rate={item.average_rate}
+            reply_amount={item.comments_amount}
+            // main={item.main}
           />
         )}
         horizontal={false}
@@ -209,7 +142,7 @@ const ProductPageScreen = ({ route, navigation }) => {
             <Image source={require("../../images/shop/closeModal.png")} />
           </TouchableHighlight>
         </View>
-        <View style={[styles.row, {maxWidth: screenWidth * 0.8}]}>
+        <View style={[styles.row, { maxWidth: screenWidth * 0.8 }]}>
           {sortBy.map((item: string, index: number) => (
             <TouchableHighlight
               key={index}

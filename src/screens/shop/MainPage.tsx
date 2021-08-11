@@ -154,7 +154,7 @@ const MainPageScreen = ({ navigation }) => {
             style={[cm('t', 15)]}
           >
             <ProductItem
-                image={require("../../images/shop/productItem.png")}
+                image={"http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"}
                 name={'Iphone xs max'}
                 id={"2"}
                 price={7499}
@@ -162,25 +162,25 @@ const MainPageScreen = ({ navigation }) => {
                 full_price={9000}
                 rate={3.5}
                 reply_amount={125}
-                main
+                // main
             />
             <ProductItem
-                image={require("../../images/shop/productItem.png")}
+                image={"http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"}
                 name={'Iphone xs max'}
                 id={"3"}
                 price={7499}
                 rate={3.5}
                 reply_amount={125}
-                main
+                // main
             />
             <ProductItem
-                image={require("../../images/shop/productItem.png")}
+                image={"http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"}
                 name={'Iphone xs max'}
                 id={"3"}
                 price={7499}
                 rate={3.5}
                 reply_amount={125}
-                main
+                // main
             />
           </ScrollView>
         </View>

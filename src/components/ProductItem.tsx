@@ -17,7 +17,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 
 type ProductItemType = {
-  image: ImageSourcePropType;
+  image: string;
   name: string;
   id?: string;
   price: number;
@@ -25,7 +25,7 @@ type ProductItemType = {
   full_price?: number;
   rate: number;
   reply_amount: number;
-  main: boolean;
+  // main: boolean;
 };
 
 const ProductItem = (props: ProductItemType) => {
@@ -38,7 +38,7 @@ const ProductItem = (props: ProductItemType) => {
         styles.productItemBlock,
         cm("b", 30),
         styles.column,
-        props.main ? {} : styles.cap,
+        // props.main ? {} : styles.cap,
       ]}
     >
       {props.discount_amount && (
@@ -56,7 +56,7 @@ const ProductItem = (props: ProductItemType) => {
         </LinearGradient>
       )}
       <Image
-        source={props.image}
+        source={{uri: props.image}}
         style={[
           styles.productImage,
           styles.marginCenterHorizontal,

@@ -1,31 +1,28 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { MainPageScreen } from "./src/screens/shop/MainPage";
-import { CategoriesScreen } from "./src/screens/shop/Categories";
-import { SingleImagePage } from "./src/components/SingleImagePage";
-import { Cart } from "./src/screens/shop/Cart";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as Font from "expo-font";
-import AppLoading from 'expo-app-loading';
-import Navigator from './router';
+import AppLoading from "expo-app-loading";
+import Navigator from "./router";
+import { Provider } from "react-redux";
+import configureStore from './src/redux';
 
-const Stack = createNativeStackNavigator();
-const fonts = () => Font.loadAsync({
-  'mt-sbold': require('./assets/fonts/Montserrat-SemiBold.ttf'),
-  'mt-normal': require('./assets/fonts/Montserrat-Regular.ttf'),
-  'mt-light': require('./assets/fonts/Montserrat-Light.ttf'),
-  'mt-medium': require('./assets/fonts/Montserrat-Medium.ttf'),
-  'mt-bold': require('./assets/fonts/Montserrat-Bold.ttf'),
-});
-
+const fonts = () =>
+  Font.loadAsync({
+    "mt-sbold": require("./assets/fonts/Montserrat-SemiBold.ttf"),
+    "mt-normal": require("./assets/fonts/Montserrat-Regular.ttf"),
+    "mt-light": require("./assets/fonts/Montserrat-Light.ttf"),
+    "mt-medium": require("./assets/fonts/Montserrat-Medium.ttf"),
+    "mt-bold": require("./assets/fonts/Montserrat-Bold.ttf"),
+  });
+const store = configureStore();
 export default function App() {
   const [font, setFont] = useState(false);
 
-  if (font){
-      return (
+  if (font) {
+    return (
+      <Provider store={store}>
         <Navigator />
-      );
+      </Provider>
+    );
   } else {
     return (
       <AppLoading
@@ -36,5 +33,3 @@ export default function App() {
     );
   }
 }
-
-
