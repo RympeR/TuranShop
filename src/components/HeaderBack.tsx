@@ -8,13 +8,12 @@ import {
   StyleSheet,
   ImageSourcePropType,
 } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
 import {
   styles,
   computeMargin,
   computePadding,
   computeMarginScreenPercent,
-  
+
 } from "../styles/style";
 const screenWidth = Dimensions.get("screen").width;
 type HeaderBackLinkType = {
@@ -29,10 +28,10 @@ const HeaderBack = (props: HeaderBackLinkType) => {
   const cmp = computeMarginScreenPercent;
 
   return (
-    <View style={[ styles.row, cm("b", -40), cm("t", 50)]}>
+    <View style={[styles.row, cm("b", -40), cm("t", 50)]}>
       <TouchableHighlight
         underlayColor={"#EFEEF2"}
-        style={[  cm('l', 20), { width: 30, zIndex:2 }]}
+        style={[cm('l', 20), { width: 30, zIndex: 2 }]}
         onPress={() => {
           props.navigation.goBack();
         }}
@@ -42,7 +41,7 @@ const HeaderBack = (props: HeaderBackLinkType) => {
       <View
         style={[styles.headerLinkTitleBlock]}
       >
-        
+
         <Text
           style={[
             // cm("t", 17),
@@ -50,7 +49,7 @@ const HeaderBack = (props: HeaderBackLinkType) => {
             // styles.center,
             // styles.alignSelfCenter
           ]}
-          >
+        >
           {props.title}
         </Text>
       </View>

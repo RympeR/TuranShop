@@ -4,11 +4,10 @@ import { getProducts } from "../../actions/productActions";
 export const loadProductsAsync = () => (dispatch: (arg0: any) => void) => {
 	ApiSectionShop.getFilteredProducts()
 		.then((response: { data: any; }) => {
-			console.warn(response.data)
 			return dispatch(getProducts(response.data))
 		}
 		)
-		.catch((error: { message: any; }) => {console.error(error)});
+		.catch((error: { message: any; }) => { console.error(error) });
 };
 
 export const deleteShopAsync = () => ''

@@ -14,6 +14,7 @@ import {
   computePadding,
   computeMarginScreenPercent,
 } from "../styles/style";
+
 type SellerBlockType = {
   image: ImageSourcePropType;
   name: string;
@@ -21,11 +22,18 @@ type SellerBlockType = {
   product_amount: number;
   id?: string;
   verified?: boolean;
+  navigation: any;
 };
+
 const SellerBlockSmall = (props: SellerBlockType) => {
   const cm = computeMargin;
   const cp = computePadding;
   const cmp = computeMarginScreenPercent;
+
+  function move_to(url: string, navigation: any, params: object) {
+    navigation.navigate(url, params);
+  }
+
   return (
     <View style={[styles.sellerBlockSmall, styles.row, styles.mb20]}>
       <View style={[styles.logoBack, styles.mt10]}>
@@ -44,7 +52,7 @@ const SellerBlockSmall = (props: SellerBlockType) => {
           )}
         </View>
         <View style={styles.row}>
-          <Text style={[styles.smallText,  styles.ml10]}>
+          <Text style={[styles.smallText, styles.ml10]}>
             {props.rating}
           </Text>
           <Image
@@ -55,9 +63,9 @@ const SellerBlockSmall = (props: SellerBlockType) => {
             style={[
               styles.normal13Text,
               styles.fw500,
-              
+
               styles.ml10,
-              {opacity: 0.6}
+              { opacity: 0.6 }
             ]}
           >
             {props.product_amount} товаров
@@ -67,9 +75,9 @@ const SellerBlockSmall = (props: SellerBlockType) => {
       <TouchableHighlight
         // underlayColor={"#F7F7F7"}
         onPress={() => {
-          console.log("pressed");
+          move_to('seller', props.navigation, { title: props.id });
         }}
-        style={[ styles.posAbsolute, cm('t', 10), cmp('l', 60), styles.border15]}
+        style={[styles.posAbsolute, cm('t', 10), cmp('l', 60), styles.border15]}
       >
         <Image
           source={require("../images/shop/message.png")}

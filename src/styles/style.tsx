@@ -155,6 +155,10 @@ const styles = StyleSheet.create({
     fontFamily: "mt-bold",
     fontSize: 17,
   },
+  title_36: {
+    fontFamily: 'mt-normal',
+    fontSize: 36
+  },
   settingsHighlight: {
     width: 42,
     height: 42,
@@ -415,9 +419,8 @@ const styles = StyleSheet.create({
     width: 278,
   },
   smallBoldText: {
-    fontStyle: "normal",
 
-    // fontFamily: 'Montserrat',
+    fontFamily: 'mt-normal',
     color: "#000000",
     fontSize: 14,
   },

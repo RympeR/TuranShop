@@ -24,14 +24,7 @@ type CartItemType = {
   cost: number;
 };
 const CartItem = (props: CartItemType) => {
-  // let [fontsLoaded] = useFonts({
-  //     Montserrat_400Regular,
-  //     Montserrat_500Medium,
-  //     Montserrat_600SemiBold,
-  //     Montserrat_700Bold,
-  // });
   const cm = computeMargin;
-  const cp = computePadding;
   const cmp = computeMarginScreenPercent;
   let product_amount = props.product_amount;
   function increase() {

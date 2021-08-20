@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { SellerScreen } from './src/screens/shop/Sellers'
 import { ProductPageScreen } from './src/screens/shop/ProductPage'
 import { SingleProductPageScreen } from './src/screens/shop/SingleProduct';
+import { SingleSeller } from './src/screens/shop/SingleSeller';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,6 +42,11 @@ export default function Navigate(){
             <Stack.Screen
                 name="product"
                 component={SingleProductPageScreen}
+                options={{ headerShown: false, title: 'Товар'}}
+            />
+            <Stack.Screen
+                name="seller"
+                component={SingleSeller}
                 options={{ headerShown: false, title: 'Товар'}}
             />
         </Stack.Navigator>

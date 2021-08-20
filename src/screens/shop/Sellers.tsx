@@ -12,7 +12,6 @@ import {
   ImageSourcePropType,
   FlatList,
 } from "react-native";
-import { BigCategory } from "../../components/BigCategory";
 import { connect } from "react-redux";
 import {
   styles,
@@ -22,7 +21,6 @@ import {
 } from "../../styles/style";
 import { HeaderBack } from "../../components/HeaderBack";
 import { SellerBlock } from "../../components/SellerBlock";
-import { ProductItemMain } from "../../components/ProductItemMain";
 // import { Icon } from 'react-native-vector-icons';
 
 type SellerBlockType = {
@@ -163,6 +161,7 @@ const SellerScreen = ({ navigation }) => {
           keyExtractor={(item, index: number) => index.toString()} //has to be unique
           renderItem={({ item }) => (
             <SellerBlock
+              navigation={navigation}
               id={item.id}
               image={item.image}
               verified={item.verified}

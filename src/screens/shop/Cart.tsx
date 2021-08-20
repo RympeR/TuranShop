@@ -14,7 +14,6 @@ import {
 } from "react-native";
 import { CartItem } from "../../components/CartItem";
 import { GreenBtn } from "../../components/GreenBtn";
-import { connect } from "react-redux";
 import {
   styles,
   computeMargin,
@@ -22,8 +21,8 @@ import {
   computeMarginScreenPercent,
   computePercentMaxHeight,
 } from "../../styles/style";
-import  { HeaderBack }  from '../../components/HeaderBack';
-import  { SingleImagePage }  from '../../components/SingleImagePage';
+import { HeaderBack } from '../../components/HeaderBack';
+import { SingleImagePage } from '../../components/SingleImagePage';
 
 type CartItemType = {
   image: ImageSourcePropType;
@@ -35,7 +34,7 @@ type CartItemType = {
 };
 
 const Cart = ({ navigation }) => {
-  
+
   const cm = computeMargin;
   const cmp = computeMarginScreenPercent;
   const cpmh = computePercentMaxHeight;
@@ -75,7 +74,7 @@ const Cart = ({ navigation }) => {
     },
   ]
   let total_cost = items.reduce((a, b) => a + (b['cost'] || 0), 0);
-  
+
   return (
 
     <SafeAreaView style={[styles.centerFlex]}>
@@ -83,10 +82,10 @@ const Cart = ({ navigation }) => {
         navigation={navigation}
         title={'Корзина'}
       />
-       {items.length > 0 ? (
-         <>
+      {items.length > 0 ? (
+        <>
           <ScrollView style={[cmp('t', 10), cpmh(68)]}>
-          {items.map((props:CartItemType, index:number) =>(
+            {items.map((props: CartItemType, index: number) => (
               <CartItem
                 id={props.id}
                 image={props.image}
@@ -113,7 +112,7 @@ const Cart = ({ navigation }) => {
           navigation={navigation}
         />
       )}
-      </SafeAreaView>
+    </SafeAreaView>
   );
 };
 

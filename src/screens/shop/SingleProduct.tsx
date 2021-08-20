@@ -20,13 +20,10 @@ import {
   computePercentMaxHeight,
 } from "../../styles/style";
 import { HeaderBack } from "../../components/HeaderBack";
-import { ProductItem } from "../../components/ProductItem";
-import { Modalize } from "react-native-modalize";
-import { LinearGradient } from "expo-linear-gradient";
-import { Icon } from "react-native-elements";
 import { fullCardType } from "../../redux/apiTypes";
 import Carousel from "pinar";
 import { SellerBlockSmall } from "../../components/SellerBlockSmall";
+import { CommentBlock } from "../../components/CommentBlock";
 import { CheckedText } from "../../components/checkedText";
 
 const screenWidth = Dimensions.get("screen").width;
@@ -36,6 +33,17 @@ const SingleProductPageScreen = ({ route, navigation }) => {
   const cmp = computeMarginScreenPercent;
   const cpmh = computePercentMaxHeight;
   const cp = computePadding;
+
+  function rate_to_text() {
+    let avg_rate = item.average_rate;
+    if (avg_rate) {
+      if (avg_rate > 4) return 'Прекрасно!'
+      if (avg_rate > 3) return 'Хорошо!'
+      if (avg_rate > 2) return 'Так себе!'
+    }
+    return 0;
+  }
+
   let item: fullCardType = {
     title: "test",
     description: "wgeroijngrweoijwgejiowgerjoiwegrjiowgeoji",
@@ -107,7 +115,23 @@ const SingleProductPageScreen = ({ route, navigation }) => {
     comments: [
       {
         id: 2,
-        comment: "tewst",
+        comment: "Для жінок цей телефон в самий раз. Головні його переваги: \
+        'няшний' вигляд і вологостійкість. Це особливо актуально з наближенням пляжного сезону.",
+        user: {
+          pk: 2,
+          username: "test",
+          image:
+            "https://i.pinimg.com/originals/95/30/41/953041070f000d45c05c912005f63724.jpg",
+          verified: true,
+          fio: "test test",
+        },
+        card: 1,
+        datetime: 1629115607,
+      },
+      {
+        id: 2,
+        comment: "Для жінок цей телефон в самий раз. Головні його переваги: \
+        'няшний' вигляд і вологостійкість. Це особливо актуально з наближенням пляжного сезону.",
         user: {
           pk: 2,
           username: "test",
@@ -211,7 +235,15 @@ const SingleProductPageScreen = ({ route, navigation }) => {
               <Text style={[styles.text]}>Товар</Text>
             </TouchableHighlight>
           </View>
-          <View style={[styles.column, cm("l", -23)]}>
+          <View style={[styles.column, cm("l", -23), {
+            backgroundColor: '#F9FAFC',
+            borderTopLeftRadius: 15,
+            width: screenWidth * 0.8,
+            borderTopRightRadius: 15,
+          },
+          cp('l', 10),
+          cp('t', 10),
+          ]}>
             <View style={[styles.row]}>
               <View style={[styles.column]}>
                 <Text style={[styles.blackSubtitle, cm("b", 5)]}>
@@ -265,6 +297,7 @@ const SingleProductPageScreen = ({ route, navigation }) => {
                   product_amount={120}
                   rating={3.5}
                   name={"tset seller"}
+                  navigation={navigation}
                 />
                 <Text style={[styles.title_18_medium, cm("b", 20)]}>
                   Доставка
@@ -315,6 +348,51 @@ const SingleProductPageScreen = ({ route, navigation }) => {
                     />
                   </View>
                 ))}
+              </View>
+              <View style={[styles.column, styles.displayNone]}>
+                <View style={[styles.row]}>
+                  <Text style={[styles.title_36]}>
+                    {item.average_rate}
+                  </Text>
+                  <Image
+                    source={require("../../images/shop/yellow_star.png")}
+                    style={[styles.ico15x15, cm('t', 20)]}
+                  />
+                  <Text style={[styles.smallBoldText, cm('t', 15), cm('l', 10)]}>
+                    {rate_to_text()}
+                  </Text>
+                  <Image
+                    style={[cmp('l', 16), cm('t', 10)]}
+                    source={require('../../images/shop/addCommentBtn.png')}
+                  />
+                </View>
+                <Text style={[styles.smallBoldText, cm('b', 15)]}>
+                  {item.comments.length} отзывов
+                </Text>
+                <View
+                  style={[{
+                    borderBottomColor: "black",
+                    borderBottomWidth: 1,
+                    width: screenWidth * 0.77,
+                    opacity: 0.1
+                  },
+                  cm('b', 20)
+                  ]}
+                />
+                <View style={cm('b', 20 )}>
+
+                {
+                  item.comments.map((comment, ind) => (
+                    <CommentBlock
+                    id={comment.id}
+                    comment={comment.comment}
+                    user={comment.user}
+                    card={comment.card}
+                    datetime={comment.datetime}
+                    />
+                    ))
+                  }
+                </View>
               </View>
             </View>
           </View>

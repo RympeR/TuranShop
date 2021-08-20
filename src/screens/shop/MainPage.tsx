@@ -46,13 +46,13 @@ const MainPageScreen = ({ navigation }) => {
             source={require("../../images/shop/search.png")}
           />
           <TouchableHighlight
-              underlayColor={'#EFEEF2'}
-              style={[styles.topIcon, cm('r', 60)]}
-              onPress={() =>{navigation.navigate('cart');}}
-            >
+            underlayColor={'#EFEEF2'}
+            style={[styles.topIcon, cm('r', 60)]}
+            onPress={() => { navigation.navigate('cart'); }}
+          >
             <Image
               source={require("../../images/shop/shopping-cart.png")}
-              />
+            />
           </TouchableHighlight>
         </View>
         <Carousel
@@ -88,7 +88,7 @@ const MainPageScreen = ({ navigation }) => {
             </Text>
             <TouchableHighlight
               underlayColor={'#EFEEF2'}
-              onPress={() =>{navigation.navigate('categories');}}
+              onPress={() => { navigation.navigate('categories'); }}
             >
               <Text style={[styles.greenText, cm("r", 30), cm("t", 5), {}]}>
                 Больше
@@ -96,12 +96,12 @@ const MainPageScreen = ({ navigation }) => {
             </TouchableHighlight>
           </View>
 
-          <ScrollView 
+          <ScrollView
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
-            horizontal 
+            horizontal
             style={[cm("t", 10)]}
-            >
+          >
             <TouchableCategory
               id={"1"}
               image={require("../../images/shop/search.png")}
@@ -130,9 +130,9 @@ const MainPageScreen = ({ navigation }) => {
               move_location={'products'}
               navigation={navigation}
             />
-            
+
           </ScrollView>
-          <ScrollView 
+          <ScrollView
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
             horizontal style={[cm('t', 20), cm('b', 20)]}>
@@ -154,37 +154,37 @@ const MainPageScreen = ({ navigation }) => {
             style={[cm('t', 15)]}
           >
             <ProductItem
-                image={"http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"}
-                name={'Iphone xs max'}
-                id={"2"}
-                price={7499}
-                discount_amount={35}
-                full_price={9000}
-                rate={3.5}
-                reply_amount={125}
-                navigation={navigation}
-                // main
-                />
+              image={"http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"}
+              name={'Iphone xs max'}
+              id={"2"}
+              price={7499}
+              discount_amount={35}
+              full_price={9000}
+              rate={3.5}
+              reply_amount={125}
+              navigation={navigation}
+            // main
+            />
             <ProductItem
-                image={"http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"}
-                name={'Iphone xs max'}
-                id={"3"}
-                price={7499}
-                rate={3.5}
-                reply_amount={125}
-                navigation={navigation}
-                // main
-                />
+              image={"http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"}
+              name={'Iphone xs max'}
+              id={"3"}
+              price={7499}
+              rate={3.5}
+              reply_amount={125}
+              navigation={navigation}
+            // main
+            />
             <ProductItem
-                image={"http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"}
-                name={'Iphone xs max'}
-                id={"3"}
-                price={7499}
-                rate={3.5}
-                reply_amount={125}
-                navigation={navigation}
-                // main
-                />
+              image={"http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"}
+              name={'Iphone xs max'}
+              id={"3"}
+              price={7499}
+              rate={3.5}
+              reply_amount={125}
+              navigation={navigation}
+            // main
+            />
           </ScrollView>
         </View>
 
@@ -195,9 +195,9 @@ const MainPageScreen = ({ navigation }) => {
             </Text>
             <TouchableHighlight
               underlayColor={'#EFEEF2'}
-              onPress={() =>{navigation.navigate('sellers');}}
+              onPress={() => { navigation.navigate('sellers'); }}
             >
-              
+
               <Text style={[styles.greenText, cm("r", 10), cm("t", 5), {}]}>
                 Больше
               </Text>
@@ -211,7 +211,8 @@ const MainPageScreen = ({ navigation }) => {
             rate={"Хорошо!"}
             rating={3.5}
             name={"tset seller"}
-          />
+            navigation={navigation}
+            />
           <SellerBlock
             id={"2"}
             image={require("../../images/shop/seller.png")}
@@ -220,7 +221,8 @@ const MainPageScreen = ({ navigation }) => {
             rate={"Хорошо!"}
             rating={3.5}
             name={"tset seller"}
-          />
+            navigation={navigation}
+            />
           <SellerBlock
             id={"2"}
             image={require("../../images/shop/seller.png")}
@@ -229,12 +231,13 @@ const MainPageScreen = ({ navigation }) => {
             rate={"Хорошо!"}
             rating={3.5}
             name={"tset seller"}
-          />
+            navigation={navigation}
+            />
           <GreenBtn
             custom_style={cm('b', 30)}
             text="Написать нам"
             ico={require("../../images/shop/message_white.png")}
-          />
+            />
         </View>
       </View>
     </ScrollView>
