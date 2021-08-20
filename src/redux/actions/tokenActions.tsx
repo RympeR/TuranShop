@@ -1,4 +1,4 @@
-import { SET_TOKEN } from "../types"
+import { SET_TOKEN } from "../actionTypes"
 
 export const setToken = () => {
     return {

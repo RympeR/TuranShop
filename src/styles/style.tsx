@@ -3,6 +3,9 @@ import { StyleSheet, Dimensions } from "react-native";
 
 const screenWidth = Dimensions.get("screen").width;
 const screenHeight = Dimensions.get("screen").height;
+const TEXT_LENGTH = 40
+const TEXT_HEIGHT = 14
+const OFFSET = TEXT_LENGTH / 2 - TEXT_HEIGHT / 2
 
 function computeMargin(direction: "t" | "b" | "l" | "r", value: number) {
   let margin: any = {};
@@ -232,6 +235,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     // justifyContent: "flex-start",
   },
+  rotate_90: {
+    transform: [{ rotate: '-90deg'}],
+    translateX: -OFFSET,
+    translateY: OFFSET
+  },
   center: {
     justifyContent: "center",
     alignItems: "center",
@@ -373,6 +381,11 @@ const styles = StyleSheet.create({
     color: "#000000",
     fontSize: 18,
   },
+  title_18_medium: {
+    fontFamily: "mt-medium",
+    color: "#000000",
+    fontSize: 18,
+  },
   title_16: {
     fontFamily: "mt-sbold",
     color: "#000000",
@@ -381,6 +394,10 @@ const styles = StyleSheet.create({
   logo: {
     width: 79,
     height: 79,
+  },
+  logo40x40: {
+    width: 40,
+    height: 40,
   },
   sellerBlock: {
     backgroundColor: "#F7F7F7",
@@ -392,6 +409,10 @@ const styles = StyleSheet.create({
     elevation: 2,
     height: 103,
     width: 327,
+  },
+  sellerBlockSmall: {
+    height: 60,
+    width: 278,
   },
   smallBoldText: {
     fontStyle: "normal",
@@ -419,6 +440,10 @@ const styles = StyleSheet.create({
     color: "#000000",
     fontSize: 18,
   },
+  ico15x15:{
+    width:15,
+    height:15,
+  },
   ml20: {
     marginLeft: 20,
   },
@@ -438,8 +463,7 @@ const styles = StyleSheet.create({
     paddingLeft: 35,
   },
   amountText: {
-    fontStyle: "normal",
-    fontWeight: "600",
+    fontFamily: "mt-sbold",
     color: "#000000",
     fontSize: 24,
   },
@@ -503,6 +527,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 50,
     maxHeight: 140,
+  },
+  productSlider: {
+    flex: 1,
+    justifyContent: "center",
+    width: 226,
+    alignItems: "center",
+    borderRadius: 50,
+    maxHeight: 308,
   },
   category: {
     marginTop: 10,
@@ -571,6 +603,10 @@ const styles = StyleSheet.create({
     maxWidth: 80,
     fontSize: 12,
   },
+  font12Medium: {
+    fontFamily: "mt-medium",
+    fontSize: 12,
+  },
 
   categoryImgBack: {
     marginTop: 7,
@@ -601,6 +637,9 @@ const styles = StyleSheet.create({
     fontFamily: "mt-normal",
     color: "#000000",
     fontSize: 14,
+  },
+  descriptionBlock:{
+    maxWidth: screenWidth - screenWidth * 0.3
   },
   smallSBoldText: {
     fontFamily: "mt-sbold",

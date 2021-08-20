@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_SINGLE_PRODUCT } from "../../types";
+import { GET_PRODUCTS, GET_SINGLE_PRODUCT } from "../../actionTypes";
 import initialState from "./product.initialState";
 
 type actionType = {

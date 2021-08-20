@@ -162,8 +162,9 @@ const MainPageScreen = ({ navigation }) => {
                 full_price={9000}
                 rate={3.5}
                 reply_amount={125}
+                navigation={navigation}
                 // main
-            />
+                />
             <ProductItem
                 image={"http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"}
                 name={'Iphone xs max'}
@@ -171,8 +172,9 @@ const MainPageScreen = ({ navigation }) => {
                 price={7499}
                 rate={3.5}
                 reply_amount={125}
+                navigation={navigation}
                 // main
-            />
+                />
             <ProductItem
                 image={"http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"}
                 name={'Iphone xs max'}
@@ -180,8 +182,9 @@ const MainPageScreen = ({ navigation }) => {
                 price={7499}
                 rate={3.5}
                 reply_amount={125}
+                navigation={navigation}
                 // main
-            />
+                />
           </ScrollView>
         </View>
 

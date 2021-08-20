@@ -71,7 +71,6 @@ const ProductPageScreen = ({ route, navigation }) => {
     dispatch(loadProductsAsync());
   }, [dispatch]);
   const items = useSelector((state) => state.product.products).results;
-  
   let sortBy: string[] = ["Ретйинг", "Популярные", "Акции", "Новинки"];
   let brands: string[] = ["brand1", "brand2", "brand3", "brand4"];
   let countries: string[] = ["country1", "country2", "country3", "country4"];
@@ -118,6 +117,7 @@ const ProductPageScreen = ({ route, navigation }) => {
             price={item.calc_price}
             rate={item.average_rate}
             reply_amount={item.comments_amount}
+            navigation={navigation}
             // main={item.main}
           />
         )}
