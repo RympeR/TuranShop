@@ -9,6 +9,7 @@ import {
   TextInput,
   FlatList,
   ImageSourcePropType,
+  SafeAreaView,
 } from "react-native";
 import { connect, useDispatch, useSelector } from "react-redux";
 import {
@@ -24,11 +25,11 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Icon } from "react-native-elements";
 import { loadProductsAsync } from "../../redux/reducers/product/product.thunks";
 import AppLoading from "expo-app-loading";
-
+import { data } from "../../redux/actions/testData";
 const screenWidth = Dimensions.get("screen").width;
 
 type ProductItemType = {
-  image: ImageSourcePropType;
+  image: string;
   name: string;
   id?: string;
   price: number;
@@ -53,7 +54,7 @@ const ProductPageScreen = ({ route, navigation }) => {
   const [productSearch, onChangeproductSearch] = useState("");
   const [showFilter, setShowFilter] = useState(false);
   const [pressed, setPressed] = useState(false);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(data);
 
   const handleClick = () => {
     setPressed(!pressed);
@@ -72,135 +73,130 @@ const ProductPageScreen = ({ route, navigation }) => {
   useEffect(() => {
     dispatch(loadProductsAsync());
   }, [dispatch]);
-  const products = useSelector((state) => state.product.products);
+  // const products = useSelector((state) => state.product.products);
+  const products = data;
   let sortBy: string[] = ["Ретйинг", "Популярные", "Акции", "Новинки"];
   let brands: string[] = ["brand1", "brand2", "brand3", "brand4"];
   let countries: string[] = ["country1", "country2", "country3", "country4"];
+  return (
+    <SafeAreaView>
+      <HeaderBack navigation={navigation} title={route.params.title} shop_ico />
 
-  if (items) {
-
-    return (
-      <View>
-        <HeaderBack navigation={navigation} title={route.params.title} shop_ico />
-        <View style={[styles.row, cm("t", 70), cm("l", 10), cm("b", 20)]}>
-          <View style={[styles.row]}>
-            <Icon name="search" style={styles.imageStyle} />
-            <TextInput
-              style={[styles.searchInput]}
-              placeholder="Поиск"
-              onChangeText={onChangeproductSearch}
-              value={productSearch}
-              placeholderTextColor="rgba(0, 0, 0, 1);"
-              selectTextOnFocus
-            />
-          </View>
+      <View style={[styles.row, cm("t", 70), cm("l", 10), cm("b", 20)]}>
+        <View style={[styles.row]}>
+          <Icon name="search" style={styles.imageStyle} />
+          <TextInput
+            style={[styles.searchInput]}
+            placeholder="Поиск"
+            onChangeText={onChangeproductSearch}
+            value={productSearch}
+            placeholderTextColor="rgba(0, 0, 0, 1);"
+            selectTextOnFocus
+          />
+        </View>
+        <TouchableHighlight
+          style={[styles.settingsHighlight, cm("l", 8)]}
+          underlayColor={"#EFEEF2"}
+          onPress={onOpen}
+        >
+          <Image
+            source={require("../../images/shop/settings.png")}
+            style={[styles.settingsImg, cm("t", 10), cm("l", 11)]}
+          />
+        </TouchableHighlight>
+      </View>
+      <Modalize
+        scrollViewProps={{ showsVerticalScrollIndicator: false }}
+        ref={modalizeRef}
+        snapPoint={700}
+        modalTopOffset={10}
+        modalHeight={800}
+        // adjustToContentHeight
+      >
+        <View style={[styles.row, cmp("t", 3)]}>
+          <Text style={[styles.regular600, cmp("l", 5)]}>Сортировка</Text>
           <TouchableHighlight
-            style={[styles.settingsHighlight, cm("l", 8)]}
-            underlayColor={"#EFEEF2"}
-            onPress={onOpen}
+            onPress={onClose}
+            underlayColor={"#rgba(12, 121, 82, 1)"}
+            style={[cmp("l", 50), styles.border15, { width: 30 }]}
           >
-            <Image
-              source={require("../../images/shop/settings.png")}
-              style={[styles.settingsImg, cm("t", 10), cm("l", 11)]}
-            />
+            <Image source={require("../../images/shop/closeModal.png")} />
           </TouchableHighlight>
         </View>
-        <FlatList
-          data={items.filter((item: any) =>
-            productSearch != ""
-              ? item.title.toLowerCase().includes(productSearch.toLowerCase())
-              : item.title
-          )}
-          keyExtractor={(item, index: number) => index.toString()} //has to be unique
-          renderItem={({ item }) => (
-            <ProductItem
-              image={item.preview}
-              name={item.title}
-              id={item.seller.id}
-              price={item.calc_price}
-              rate={item.average_rate}
-              reply_amount={item.comments_amount}
-              navigation={navigation}
-            // main={item.main}
-            />
-          )}
-          horizontal={false}
-          numColumns={2}
-        />
-        <Modalize
-          scrollViewProps={{ showsVerticalScrollIndicator: false }}
-          ref={modalizeRef}
-          snapPoint={700}
-          modalTopOffset={10}
-          modalHeight={800}
-        // adjustToContentHeight
-        >
-          <View style={[styles.row, cmp("t", 3)]}>
-            <Text style={[styles.regular600, cmp("l", 5)]}>Сортировка</Text>
+        <View style={[styles.row, { maxWidth: screenWidth * 0.8 }]}>
+          {sortBy.map((item: string, index: number) => (
             <TouchableHighlight
-              onPress={onClose}
-              underlayColor={"#rgba(12, 121, 82, 1)"}
-              style={[cmp("l", 50), styles.border15, { width: 30 }]}
+              key={index}
+              onPress={handleClick}
+              activeOpacity={0}
+              underlayColor={"#EFEEF2"}
+              style={[styles.ml20, styles.filterCategory]}
             >
-              <Image source={require("../../images/shop/closeModal.png")} />
-            </TouchableHighlight>
-          </View>
-          <View style={[styles.row, { maxWidth: screenWidth * 0.8 }]}>
-            {sortBy.map((item: string, index: number) => (
-              <TouchableHighlight
-                key={index}
-                onPress={handleClick}
-                activeOpacity={0}
-                underlayColor={"#EFEEF2"}
-                style={[styles.ml20, styles.filterCategory]}
-              >
-                <>
-                  {pressed && (
-                    <LinearGradient
-                      style={styles.gradient}
-                      colors={["#0C7952", "#289A71"]}
-                    >
-                      <Text
-                        style={[
-                          styles.smallText,
-                          styles.mt2,
-                          styles.ml10,
-                          styles.pr8,
-                          { color: "#FFFFFF" },
-                        ]}
-                      >
-                        {item}
-                      </Text>
-                    </LinearGradient>
-                  )}
-                  {!pressed && (
+              <>
+                {pressed && (
+                  <LinearGradient
+                    style={styles.gradient}
+                    colors={["#0C7952", "#289A71"]}
+                  >
                     <Text
                       style={[
                         styles.smallText,
                         styles.mt2,
                         styles.ml10,
                         styles.pr8,
+                        { color: "#FFFFFF" },
                       ]}
                     >
                       {item}
                     </Text>
-                  )}
-                </>
-              </TouchableHighlight>
-            ))}
-          </View>
-        </Modalize>
-      </View>
-    );
-  } else {
-    return (
-      <AppLoading
-        startAsync={products}
-        onFinish={() => { console.warn(products.results); setItems(products.results) }}
-        onError={console.warn}
-      />
-    );
-  }
+                  </LinearGradient>
+                )}
+                {!pressed && (
+                  <Text
+                    style={[
+                      styles.smallText,
+                      styles.mt2,
+                      styles.ml10,
+                      styles.pr8,
+                    ]}
+                  >
+                    {item}
+                  </Text>
+                )}
+              </>
+            </TouchableHighlight>
+          ))}
+        </View>
+      </Modalize>
+      <ScrollView  style={[cm('b', 170)]}>
+        <View>
+          <FlatList
+            data={items.filter((item: any) =>
+              productSearch != ""
+                ? item.title.toLowerCase().includes(productSearch.toLowerCase())
+                : item.title
+            )}
+            keyExtractor={(item, index: number) => index.toString()} //has to be unique
+            renderItem={({ item }) => (
+              <ProductItem
+                image={item.preview}
+                name={item.title}
+                id={item.id}
+                price={item.calc_price}
+                rate={item.average_rate}
+                reply_amount={item.comments_amount}
+                navigation={navigation}
+                // main={item.main}
+              />
+            )}
+            horizontal={false}
+            numColumns={2}
+          />
+        </View>
+      </ScrollView>
+      
+    </SafeAreaView>
+  );
 };
 
 export { ProductPageScreen };

@@ -7,7 +7,7 @@ import {
   StyleSheet,
   ImageSourcePropType,
 } from "react-native";
-import { styles } from "../styles/style";
+import { computeMargin, styles } from "../styles/style";
 type TouchableCategoryType = {
   id: string;
   image: ImageSourcePropType;
@@ -19,11 +19,11 @@ const TouchableCategory = (props: TouchableCategoryType) => {
   function move_to(url: string, navigation: any, params: object) {
     navigation.navigate(url, params);
   }
-
+  const cm = computeMargin;
   return (
     <TouchableHighlight
       key={props.id}
-      style={[styles.ml20, styles.categoryBlock]}
+      style={[styles.ml20, cm('b', 5), styles.categoryBlock]}
       onPress={() => {
         move_to(props.move_location, props.navigation, { title: props.text });
       }}

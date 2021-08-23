@@ -174,6 +174,11 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: "#FFFFFF",
   },
+  font17SBoldBlack: {
+    fontFamily: "mt-sbold",
+    fontSize: 17,
+    color: "#000000",
+  },
   alignCenter: {
     textAlign: "center",
   },
@@ -395,6 +400,10 @@ const styles = StyleSheet.create({
     color: "#000000",
     fontSize: 16,
   },
+  rateBlock : {
+    maxHeight: 200,
+    maxWidth: 327,
+  },
   logo: {
     width: 79,
     height: 79,
@@ -402,6 +411,30 @@ const styles = StyleSheet.create({
   logo40x40: {
     width: 40,
     height: 40,
+  },
+  logo33x33: {
+    width: 33,
+    height: 33,
+  },
+  cirle_logo95x95: {
+    width: 95,
+    height: 95,
+    borderRadius: 45,
+  },
+  cirle_logo53x53: {
+    width: 53,
+    height: 53,
+    // borderRadius: 15,
+  },
+  white30font:{
+    fontSize: 30,
+    fontFamily: 'mt-bold',
+    color: '#FFFFFF'
+  },
+  white12font:{
+    fontSize: 12,
+    fontFamily: 'mt-normal',
+    color: '#FFFFFF'
   },
   sellerBlock: {
     backgroundColor: "#F7F7F7",
@@ -509,6 +542,30 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontFamily: "mt-normal",
   },
+  whiteBar: {
+    width: 253,
+    height: 14,
+    backgroundColor: '#F7F7F7',
+    borderRadius: 10
+  },
+  bar: {
+    height: 14,
+    backgroundColor: '#26976E',
+    borderRadius: 10
+  },
+  orderBlock: {
+    backgroundColor: '#F7F7F7',
+    width: 330,
+    height: 80,
+    borderRadius: 15,
+  },
+  greenPopBtn: {
+    width: 327,
+    height: 72,
+    borderRadius: 15,
+    zIndex: 5,
+    position: "absolute",
+  },
   topIcon: {
     marginTop: 60,
     // marginLeft: 13,
@@ -610,7 +667,11 @@ const styles = StyleSheet.create({
     fontFamily: "mt-medium",
     fontSize: 12,
   },
-
+  smallWhiteFont: {
+    fontFamily: 'mt-sbold',
+    fontSize: 10,
+    color: '#FFFFFF',
+  },
   categoryImgBack: {
     marginTop: 7,
     backgroundColor: "#EEEDF1",
@@ -714,6 +775,10 @@ const styles = StyleSheet.create({
   },
   regular600: {
     fontFamily: 'mt-bold',
+    fontSize: 16,
+  },
+  s_bold600: {
+    fontFamily: 'mt-sbold',
     fontSize: 16,
   },
   imageStyle: {

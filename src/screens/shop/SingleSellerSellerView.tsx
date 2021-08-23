@@ -23,10 +23,11 @@ import {
 import { HeaderBack } from "../../components/HeaderBack";
 import { ProductItem } from "../../components/ProductItem";
 import { TouchableCategory } from "../../components/TouchableCategory";
+import { OrderRow } from "../../components/OrderRow";
 
 const screenWidth = Dimensions.get("screen").width;
 
-const SingleSeller = ({ route, navigation }) => {
+const SingleSellerSellerView = ({ route, navigation }) => {
   const cm = computeMargin;
   const cmp = computeMarginScreenPercent;
   const cpmh = computePercentMaxHeight;
@@ -148,7 +149,26 @@ const SingleSeller = ({ route, navigation }) => {
       "https://i.pinimg.com/originals/95/30/41/953041070f000d45c05c912005f63724.jpg",
     description: "3ohrhuho hu23hfh2 h3fh2 fhi2hi3f hi23fih2o3f ho2fhio",
   };
-
+  let orders = [
+      {
+        pk: 11123123123,
+        status: 'ожидается отправка',
+        ico: 'https://i.pinimg.com/originals/95/30/41/953041070f000d45c05c912005f63724.jpg',
+        new: true
+      },
+      {
+        pk: 11123123123,
+        status: 'заказ отправлен',
+        ico: 'https://i.pinimg.com/originals/95/30/41/953041070f000d45c05c912005f63724.jpg',
+        new: true
+      },
+      {
+        pk: 11123123123,
+        status: 'ожидается',
+        ico: 'https://i.pinimg.com/originals/95/30/41/953041070f000d45c05c912005f63724.jpg',
+        new: true
+      },
+    ];
   function rate_to_text(item: any) {
     let avg_rate = item.average_rate.rate__avg;
     if (avg_rate) {
@@ -181,7 +201,7 @@ const SingleSeller = ({ route, navigation }) => {
   useEffect(() => setRate(get_percentage(item)), []);
   return (
     <SafeAreaView>
-      <HeaderBack navigation={navigation} title={item.name} shop_ico />
+      <HeaderBack navigation={navigation} title={'Ваш магазин'} shop_ico />
       <ScrollView showsVerticalScrollIndicator={false} style={[cm("t", 70)]}>
         <View style={[styles.column]}>
           <View style={[styles.row, cm("b", 20), cm("l", 20)]}>
@@ -220,7 +240,15 @@ const SingleSeller = ({ route, navigation }) => {
             <View style={[styles.row, cm("l", 25)]}>
               <Text style={[styles.title_16]}>О магазине</Text>
             </View>
-            <View style={[styles.row, {maxWidth: screenWidth* 0.85}, cm("t", 10), cm("b", 5), cm("l", 25)]}>
+            <View
+              style={[
+                styles.row,
+                { maxWidth: screenWidth * 0.85 },
+                cm("t", 10),
+                cm("b", 5),
+                cm("l", 25),
+              ]}
+            >
               <Text style={[styles.smallBoldText]}>{item.description}</Text>
             </View>
           </View>
@@ -288,8 +316,99 @@ const SingleSeller = ({ route, navigation }) => {
               navigation={navigation}
             />
           </ScrollView>
+          <View style={styles.category}>
+            <View style={[styles.categoryPreBlock, cm("b", 20), cm("l", 15)]}>
+              <Text style={[styles.blackSubtitle, cm("l", 10), {}]}>
+                Заказы
+              </Text>
+              <TouchableHighlight
+                underlayColor={"#EFEEF2"}
+                onPress={() => {
+                  navigation.navigate("base-products");
+                }}
+              >
+                <Text style={[styles.greenText, cm("r", 15), cm("t", 5), {}]}>
+                  Все
+                </Text>
+              </TouchableHighlight>
+            </View>
+            <View style={[styles.column, styles.center]}>
+              { orders.map(( order, ind) => (
+                <OrderRow
+                  key={ind}
+                  pk={order.pk}
+                  status={order.status}
+                  ico={order.ico}
+                  new={order.new}
+                  navigation={navigation}
+                />
+              ))}
+            </View>
+          </View>
+          <View style={styles.category}>
+            <View style={[styles.categoryPreBlock, cm("b", 20), cm("l", 15)]}>
+              <Text style={[styles.blackSubtitle, cm("l", 10), {}]}>
+                Топ товары
+              </Text>
+              <TouchableHighlight
+                underlayColor={"#EFEEF2"}
+                onPress={() => {
+                  navigation.navigate("base-products");
+                }}
+              >
+                <Text style={[styles.greenText, cm("r", 15), cm("t", 5), {}]}>
+                  Больше
+                </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            horizontal={true}
+            style={[cm("t", 15)]}
+          >
+            <ProductItem
+              image={
+                "http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"
+              }
+              name={"Iphone xs max"}
+              id={"2"}
+              price={7499}
+              discount_amount={35}
+              full_price={9000}
+              rate={3.5}
+              reply_amount={125}
+              navigation={navigation}
+              // main
+            />
+            <ProductItem
+              image={
+                "http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"
+              }
+              name={"Iphone xs max"}
+              id={"3"}
+              price={7499}
+              rate={3.5}
+              reply_amount={125}
+              navigation={navigation}
+              // main
+            />
+            <ProductItem
+              image={
+                "http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"
+              }
+              name={"Iphone xs max"}
+              id={"3"}
+              price={7499}
+              rate={3.5}
+              reply_amount={125}
+              navigation={navigation}
+              // main
+            />
+          </ScrollView>
 
-          <View style={[styles.column, styles.rateBlock, cm("l", 25)]}>
+          <View style={[styles.column, styles.rateBlock, cm("l", 25), cm("b", 50)]}>
             <View style={[styles.row]}>
               <Text style={[styles.title_36]}>
                 {item.average_rate.rate__avg}
@@ -335,72 +454,10 @@ const SingleSeller = ({ route, navigation }) => {
               ))}
             </View>
           </View>
-          <View style={styles.category}>
-            <View style={[styles.categoryPreBlock, cm("b", 20), cm("l", 15)]}>
-              <Text style={[styles.blackSubtitle, cm("l", 10), {}]}>
-                Топ товары
-              </Text>
-              <TouchableHighlight
-                underlayColor={"#EFEEF2"}
-                onPress={() => {
-                  navigation.navigate("base-products");
-                }}
-              >
-                <Text style={[styles.greenText, cm("r", 15), cm("t", 5), {}]}>
-                  Больше
-                </Text>
-              </TouchableHighlight>
-            </View>
-          </View>
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            showsHorizontalScrollIndicator={false}
-            horizontal={true}
-            style={[cm("t", 15), cm("b", 20)]}
-          >
-            <ProductItem
-              image={
-                "http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"
-              }
-              name={"Iphone xs max"}
-              id={"2"}
-              price={7499}
-              discount_amount={35}
-              full_price={9000}
-              rate={3.5}
-              reply_amount={125}
-              navigation={navigation}
-              // main
-            />
-            <ProductItem
-              image={
-                "http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"
-              }
-              name={"Iphone xs max"}
-              id={"3"}
-              price={7499}
-              rate={3.5}
-              reply_amount={125}
-              navigation={navigation}
-              // main
-            />
-            <ProductItem
-              image={
-                "http://mobile.turancoin.net/media/preview_cards/logo_NlC7Me7.png"
-              }
-              name={"Iphone xs max"}
-              id={"3"}
-              price={7499}
-              rate={3.5}
-              reply_amount={125}
-              navigation={navigation}
-              // main
-            />
-          </ScrollView>
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-export { SingleSeller };
+export { SingleSellerSellerView };

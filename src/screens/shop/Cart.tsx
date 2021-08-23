@@ -21,8 +21,8 @@ import {
   computeMarginScreenPercent,
   computePercentMaxHeight,
 } from "../../styles/style";
-import { HeaderBack } from '../../components/HeaderBack';
-import { SingleImagePage } from '../../components/SingleImagePage';
+import { HeaderBack } from "../../components/HeaderBack";
+import { SingleImagePage } from "../../components/SingleImagePage";
 
 type CartItemType = {
   image: ImageSourcePropType;
@@ -34,57 +34,52 @@ type CartItemType = {
 };
 
 const Cart = ({ navigation }) => {
-
   const cm = computeMargin;
   const cmp = computeMarginScreenPercent;
   const cpmh = computePercentMaxHeight;
   const cp = computePadding;
   let items: CartItemType[] = [
     {
-      id: '1',
+      id: "1",
       image: require("../../images/shop/cart_product.png"),
-      name: 'Наушники Defur',
+      name: "Наушники Defur",
       seller: "Александр",
       product_amount: 1,
-      cost: 45.8
+      cost: 45.8,
     },
     {
-      id: '1',
+      id: "1",
       image: require("../../images/shop/cart_product.png"),
-      name: 'Наушники Defur',
+      name: "Наушники Defur",
       seller: "Александр",
       product_amount: 1,
-      cost: 45.8
+      cost: 45.8,
     },
     {
-      id: '1',
+      id: "1",
       image: require("../../images/shop/cart_product.png"),
-      name: 'Наушники Defur',
+      name: "Наушники Defur",
       seller: "Александр",
       product_amount: 1,
-      cost: 45.8
+      cost: 45.8,
     },
     {
-      id: '1',
+      id: "1",
       image: require("../../images/shop/cart_product.png"),
-      name: 'Наушники Defur',
+      name: "Наушники Defur",
       seller: "Александр",
       product_amount: 1,
-      cost: 45.8
+      cost: 45.8,
     },
-  ]
-  let total_cost = items.reduce((a, b) => a + (b['cost'] || 0), 0);
+  ];
+  let total_cost = items.reduce((a, b) => a + (b["cost"] || 0), 0);
 
   return (
-
     <SafeAreaView style={[styles.centerFlex]}>
-      <HeaderBack
-        navigation={navigation}
-        title={'Корзина'}
-      />
+      <HeaderBack navigation={navigation} title={"Корзина"} />
       {items.length > 0 ? (
         <>
-          <ScrollView style={[cmp('t', 10), cpmh(68)]}>
+          <ScrollView style={[cmp("t", 10), cpmh(68)]}>
             {items.map((props: CartItemType, index: number) => (
               <CartItem
                 id={props.id}
@@ -97,8 +92,16 @@ const Cart = ({ navigation }) => {
               />
             ))}
           </ScrollView>
-          <GreenBtn text={`Оформить заказ ${total_cost} $`} />
-          <Text style={[cm("t", 20), cm("b", 30), styles.marginCenterHorizontal]}>
+          <TouchableHighlight
+            onPress={() => {
+              navigation.navigate("settings");
+            }}
+          >
+            <GreenBtn text={`Оформить заказ ${total_cost} $`} />
+          </TouchableHighlight>
+          <Text
+            style={[cm("t", 20), cm("b", 30), styles.marginCenterHorizontal]}
+          >
             Продолжить попкупки
           </Text>
         </>
@@ -107,8 +110,8 @@ const Cart = ({ navigation }) => {
           title={"Ваша корзина пуста"}
           text={"Чтобы оформить заказ добавьте желаемые заказы в корзину"}
           btntext={"Перейти к товарам"}
-          img={require('../../images/shop/SinglePageImage.png')}
-          move_location={'home'}
+          img={require("../../images/shop/SinglePageImage.png")}
+          move_location={"home"}
           navigation={navigation}
         />
       )}

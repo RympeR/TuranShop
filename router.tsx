@@ -6,8 +6,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { SellerScreen } from './src/screens/shop/Sellers'
 import { ProductPageScreen } from './src/screens/shop/ProductPage'
+import { ProductMainPage } from './src/screens/shop/ProductMainPage'
 import { SingleProductPageScreen } from './src/screens/shop/SingleProduct';
 import { SingleSeller } from './src/screens/shop/SingleSeller';
+import { SingleSellerSellerView } from './src/screens/shop/SingleSellerSellerView';
+import { SettingsScreen } from './src/screens/shop/Settings';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,6 +43,11 @@ export default function Navigate(){
                 options={{ headerShown: false, title: 'Товары'}}
             />
             <Stack.Screen
+                name="base-products"
+                component={ProductMainPage}
+                options={{ headerShown: false, title: 'Товары'}}
+            />
+            <Stack.Screen
                 name="product"
                 component={SingleProductPageScreen}
                 options={{ headerShown: false, title: 'Товар'}}
@@ -47,6 +55,16 @@ export default function Navigate(){
             <Stack.Screen
                 name="seller"
                 component={SingleSeller}
+                options={{ headerShown: false, title: 'Товар'}}
+            />
+            <Stack.Screen
+                name="sellerselfview"
+                component={SingleSellerSellerView}
+                options={{ headerShown: false, title: 'Товар'}}
+            />
+            <Stack.Screen
+                name="settings"
+                component={SettingsScreen}
                 options={{ headerShown: false, title: 'Товар'}}
             />
         </Stack.Navigator>
