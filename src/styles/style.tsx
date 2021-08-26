@@ -179,6 +179,11 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: "#000000",
   },
+  font17MediumBlack: {
+    fontFamily: "mt-medium",
+    fontSize: 17,
+    color: "#072D2B",
+  },
   alignCenter: {
     textAlign: "center",
   },
@@ -192,7 +197,6 @@ const styles = StyleSheet.create({
   },
 
   title_27: {
-    fontStyle: "normal",
     fontFamily: "mt-bold",
     color: "#000000",
     fontSize: 27,
@@ -230,8 +234,8 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   pageImg: {
-    width: 316,
-    height: 235,
+    width: 240,
+    height: 320,
   },
   rightArrow: {
     width: 7,
@@ -528,6 +532,20 @@ const styles = StyleSheet.create({
     height: 42,
     backgroundColor: "#F7F7F7",
     borderRadius: 15,
+  },
+  nameInput: {
+    // color: "#424242",
+    width: 271,
+    height: 42,
+    backgroundColor: "#F7F7F7",
+    borderRadius: 15,
+    borderColor:'#289A82'
+  },
+  borderStyle: {
+    borderRadius: 15,
+    borderColor:'#289A82',
+    borderWidth: 1,
+    borderStyle: 'solid',
   },
   greenText: {
     fontSize: 14,

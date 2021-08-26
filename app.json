@@ -18,7 +18,11 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.yourcompany.yourappname"
+      "bundleIdentifier": "com.yourcompany.yourappname",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to access your camera",
+        "NSMicrophoneUsageDescription": "Allow $(PRODUCT_NAME) to access your microphone"
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -26,13 +30,18 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.yourcompany.yourappname",
-      "versionCode": 1
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-camera"
+      "expo-camera",
+      "expo-image-picker"
     ]
   }
 }

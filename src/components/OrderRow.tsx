@@ -42,20 +42,22 @@ const OrderRow = (props: OrderRowType) => {
           </Text>
           <Text style={[styles.greenText, cm("t", 2)]}>{props.status}</Text>
         </View>
-        <View
-          style={[
-            { backgroundColor: "#0C7952" },
-            styles.posAbsolute, 
-            styles.border15,
-            styles.logo40x40,
-            cm("t", 20),
-            cmp("l", 70),
-          ]}
-        >
-          {props.new && (
-            <Text style={[styles.smallWhiteFont, cm("l", 8),cm("t", 12)]}>New</Text>
-          )}
-        </View>
+        {props.new && (
+          <View
+            style={[
+              { backgroundColor: "#0C7952" },
+              styles.posAbsolute,
+              styles.border15,
+              styles.logo40x40,
+              cm("t", 20),
+              cmp("l", 70),
+            ]}
+          >
+            <Text style={[styles.smallWhiteFont, cm("l", 8), cm("t", 12)]}>
+              New
+            </Text>
+          </View>
+        )}
         <Image
           style={[styles.posAbsolute, cm("t", 30), cmp("l", 85)]}
           source={require("../images/shop/rightBlackArrow.png")}

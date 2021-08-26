@@ -13,13 +13,13 @@ import {
   computeMargin,
   computePadding,
   computeMarginScreenPercent,
-
 } from "../styles/style";
 const screenWidth = Dimensions.get("screen").width;
 type HeaderBackLinkType = {
   title: string;
   navigation: any;
   shop_ico?: boolean;
+  move_location?: string;
 };
 
 const HeaderBack = (props: HeaderBackLinkType) => {
@@ -31,17 +31,16 @@ const HeaderBack = (props: HeaderBackLinkType) => {
     <View style={[styles.row, cm("b", -40), cm("t", 50)]}>
       <TouchableHighlight
         underlayColor={"#EFEEF2"}
-        style={[cm('l', 20), { width: 30, zIndex: 2 }]}
+        style={[cm("l", 20), { width: 30, zIndex: 2 }]}
         onPress={() => {
-          props.navigation.goBack();
+          props?.move_location
+            ? props.navigation.navigate(props.move_location)
+            : props.navigation.goBack();
         }}
       >
         <Image source={require("../images/shop/backImage.png")} />
       </TouchableHighlight>
-      <View
-        style={[styles.headerLinkTitleBlock]}
-      >
-
+      <View style={[styles.headerLinkTitleBlock]}>
         <Text
           style={[
             // cm("t", 17),

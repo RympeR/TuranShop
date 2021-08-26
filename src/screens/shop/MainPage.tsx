@@ -46,7 +46,11 @@ const MainPageScreen = ({ route, navigation }) => {
           title={"Хотите продавать"}
           text={"Перейти в личный магазин"}
           navigation={navigation}
-          location={"sellerselfview"}
+          location={
+            route.params?.has_shop
+              ? "sellerselfview"
+              : "shop-registry-first-step"
+          }
         />
       )}
       <ScrollView>
@@ -95,7 +99,15 @@ const MainPageScreen = ({ route, navigation }) => {
               />
             </View>
           </Carousel>
-          <View style={[styles.category, cm('r', -20), cm('l', -20), cp('r', 20), cp('l', 20)]}>
+          <View
+            style={[
+              styles.category,
+              cm("r", -20),
+              cm("l", -20),
+              cp("r", 20),
+              cp("l", 20),
+            ]}
+          >
             <View style={[styles.categoryPreBlock]}>
               <Text style={[styles.blackSubtitle, cm("l", 30), {}]}>
                 Категории
@@ -115,7 +127,7 @@ const MainPageScreen = ({ route, navigation }) => {
               showsVerticalScrollIndicator={false}
               showsHorizontalScrollIndicator={false}
               horizontal
-              style={[cm("t", 10), cp('r', 20)]}
+              style={[cm("t", 10), cp("r", 20)]}
             >
               <TouchableCategory
                 id={"1"}
@@ -268,7 +280,6 @@ const MainPageScreen = ({ route, navigation }) => {
           </View>
         </View>
       </ScrollView>
-      
     </View>
   );
 };
