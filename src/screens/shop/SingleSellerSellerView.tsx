@@ -329,7 +329,7 @@ const SingleSellerSellerView = ({ route, navigation }) => {
                 <TouchableHighlight
                   underlayColor={"#EFEEF2"}
                   onPress={() => {
-                    navigation.navigate("orders");
+                    navigation.navigate("shop-orders");
                   }}
                 >
                   <Text style={[styles.greenText, cm("r", 15), cm("t", 5), {}]}>

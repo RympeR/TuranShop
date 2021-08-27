@@ -47,9 +47,9 @@ const MainPageScreen = ({ route, navigation }) => {
           text={"Перейти в личный магазин"}
           navigation={navigation}
           location={
-            route.params?.has_shop
-              ? "sellerselfview"
-              : "shop-registry-first-step"
+            // route.params?.has_shop?
+               "sellerselfview"
+              // : "shop-registry-first-step"
           }
         />
       )}
