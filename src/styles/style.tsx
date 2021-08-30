@@ -412,6 +412,10 @@ const styles = StyleSheet.create({
     width: 79,
     height: 79,
   },
+  orderImage: {
+    width: 70,
+    height: 96,
+  },
   logo40x40: {
     width: 40,
     height: 40,
@@ -528,10 +532,11 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     color: "#424242",
-    width: 271,
+    width: 250,
     height: 42,
     backgroundColor: "#F7F7F7",
-    borderRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomRightRadius: 15,
   },
   nameInput: {
     // color: "#424242",
@@ -575,6 +580,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#F7F7F7',
     width: 330,
     height: 80,
+    borderRadius: 15,
+  },
+  bigOrderBlock: {
+    backgroundColor: '#F7F7F7',
+    width: 330,
+    height: 170,
     borderRadius: 15,
   },
   greenPopBtn: {
@@ -683,6 +694,10 @@ const styles = StyleSheet.create({
   },
   font12Medium: {
     fontFamily: "mt-medium",
+    fontSize: 12,
+  },
+  font12Normal: {
+    fontFamily: "mt-normal",
     fontSize: 12,
   },
   smallWhiteFont: {
@@ -800,12 +815,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   imageStyle: {
-    padding: 10,
-    margin: 5,
     // height: 25,
     // width: 25,
     resizeMode: 'stretch',
     alignItems: 'center',
+    
+  },
+  searchImgBack: {
+    backgroundColor: "#F7F7F7",
+    height: 42,
+    width: 42,
+    borderTopLeftRadius: 15,
+    borderBottomLeftRadius: 15,
   },
   sectionStyle: {
     flexDirection: 'row',

@@ -12,6 +12,7 @@ import { SingleSeller } from "./src/screens/shop/SingleSeller";
 import { SingleSellerSellerView } from "./src/screens/shop/SingleSellerSellerView";
 import { SettingsScreen } from "./src/screens/shop/Settings";
 import { OrdersView } from "./src/screens/shop/Orders";
+import { ShopOrderScreen } from "./src/screens/shop/ShopOrderScreen";
 import { ShopRegistryWelcome } from "./src/screens/shop/shop/ShopRegistryWelcome";
 import { LogoRegistryStep } from "./src/screens/shop/shop/ShopRegisterStep2";
 import { FirstRegistryStep } from "./src/screens/shop/shop/ShopRegisterStep1";
@@ -76,6 +77,11 @@ export default function Navigate() {
         <Stack.Screen
           name="orders"
           component={OrdersView}
+          options={{ headerShown: false, title: "Товар" }}
+        />
+        <Stack.Screen
+          name="shop-orders"
+          component={ShopOrderScreen}
           options={{ headerShown: false, title: "Товар" }}
         />
         <Stack.Screen
