@@ -27,7 +27,7 @@ const LogoRegistryStep = ({ route, navigation }) => {
   const cmp = computeMarginScreenPercent;
   const cpmh = computePercentMaxHeight;
   const cp = computePadding;
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const screenWidth = Dimensions.get("screen").width;
   function move_to(url: string, navigation: any, params: object = {}) {
     navigation.navigate(url, params);
@@ -76,7 +76,7 @@ const LogoRegistryStep = ({ route, navigation }) => {
           {image ? (
             <Image
               source={{ uri: image }}
-              style={{ width: 200, height: 200 }}
+              style={{ width: 200, height: 200, borderRadius: 45 }}
             />
           ) : (
             <Image source={require("../../../images/shop/LogoBlock.png")} />

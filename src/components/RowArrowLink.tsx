@@ -11,11 +11,13 @@ import {
   computeMargin,
   computeMarginScreenPercent,
 } from "../styles/style";
+import ToggleSwitch from "toggle-switch-react-native";
 
 type rowLinkTextType = {
   text: string;
   navigation: any;
   location: string;
+  swiper: boolean;
 };
 
 const RowLink = (props: rowLinkTextType) => {
@@ -34,17 +36,26 @@ const RowLink = (props: rowLinkTextType) => {
             {props.text}
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight
-        style={[cmp("l", 80), styles.posAbsolute]}
-          onPress={() => {
-            props.navigation.navigate(location);
-          }}
-        >
-          <Image
-            
-            source={require("../images/shop/rightBlackArrow.png")}
+        {props.swiper ? (
+          <ToggleSwitch
+            isOn={false}
+            onColor="green"
+            offColor="gray"
+            labelStyle={{ color: "black", fontWeight: "900" }}
+            size="medium"
+            style={[cmp("l", 80), styles.posAbsolute]}
+            onToggle={(isOn) => console.log("changed to : ", isOn)}
           />
-        </TouchableHighlight>
+        ) : (
+          <TouchableHighlight
+            style={[cmp("l", 80), styles.posAbsolute]}
+            onPress={() => {
+              props.navigation.navigate(location);
+            }}
+          >
+            <Image source={require("../images/shop/rightBlackArrow.png")} />
+          </TouchableHighlight>
+        )}
       </View>
       <View
         style={[

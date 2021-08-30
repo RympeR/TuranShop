@@ -9,6 +9,7 @@ import {
   ScrollView,
   Dimensions,
   StyleSheet,
+  Platform,
 } from "react-native";
 import { HeaderBack } from "../../components/HeaderBack";
 import { RowLink } from "../../components/RowArrowLink";
@@ -22,7 +23,8 @@ import {
   computePercentMaxHeight,
 } from "../../styles/style";
 import { LinearGradient } from "expo-linear-gradient";
-import { Camera } from 'expo-camera';
+import { Camera } from "expo-camera";
+import * as ImagePicker from "expo-image-picker";
 
 const screenWidth = Dimensions.get("screen").width;
 
@@ -30,54 +32,69 @@ const SettingsScreen = ({ route, navigation }) => {
   const cm = computeMargin;
   const cmp = computeMarginScreenPercent;
   const [hasPermission, setHasPermission] = useState(false);
-  const [type, setType] = useState(Camera.Constants.Type.back);
+  const [image, setImage] = useState("");
 
-  function get_permisssions(){
-    (async () => {
-        const { status } = await Camera.requestPermissionsAsync();
-        setHasPermission(status === 'granted');
-      })();
-  }
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 4],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
   useEffect(() => {
     (async () => {
-      const { status } = await Camera.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
+      if (Platform.OS !== "web") {
+        const {
+          status,
+        } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== "granted") {
+          alert("Sorry, we need camera roll permissions to make this work!");
+        }
+      }
     })();
   }, []);
+
   return (
     <View>
       <HeaderBack title={"Настройки"} navigation={navigation} />
       <View style={[styles.column, styles.center, cm("t", 60)]}>
         <View style={[styles.column, cm("b", 15)]}>
-        <Camera type={type}>
           <TouchableHighlight
-            onPress={() => {
-                setType(
-                  type === Camera.Constants.Type.back
-                    ? Camera.Constants.Type.front
-                    : Camera.Constants.Type.back
-                );
-              }}
+            onPress={pickImage}
             style={[{ width: 119, height: 119 }, styles.center]}
           >
-            <View>
-              <Image source={require("../../images/shop/settingsImg.png")} />
+            {image ? (
               <Image
-                source={require("../../images/shop/imgPlus.png")}
-                style={[{ zIndex: 2 }, cm("t", -25), cm("l", 40)]}
+                source={{ uri: image }}
+                style={{ width: 120, height: 120, borderRadius: 45 }}
               />
-            </View>
+            ) : (
+              <View>
+                <Image source={require("../../images/shop/settingsImg.png")} />
+                <Image
+                  source={require("../../images/shop/imgPlus.png")}
+                  style={[{ zIndex: 2 }, cm("t", -25), cm("l", 40)]}
+                />
+              </View>
+            )}
           </TouchableHighlight>
-          </Camera>
         </View>
-        <RowLink text={"Личные данные"} navigation={navigation} location={""} />
-        <RowLink text={"Кошельки"} navigation={navigation} location={""} />
-        <RowLink text={"Безопасность"} navigation={navigation} location={""} />
-        <RowLink text={"Мои заказы"} navigation={navigation} location={""} />
-        <RowLink text={"Избранное"} navigation={navigation} location={""} />
-        <RowLink text={"Уведомления"} navigation={navigation} location={""} />
-        <RowLink text={"Звук"} navigation={navigation} location={""} />
-        <RowLink text={"Помощь"} navigation={navigation} location={""} />
+        <RowLink swiper={false} text={"Личные данные"} navigation={navigation} location={""} />
+        <RowLink swiper={false} text={"Кошельки"} navigation={navigation} location={""} />
+        <RowLink swiper={false} text={"Безопасность"} navigation={navigation} location={""} />
+        <RowLink swiper={false} text={"Мои заказы"} navigation={navigation} location={""} />
+        <RowLink swiper={false} text={"Избранное"} navigation={navigation} location={""} />
+        <RowLink swiper={true} text={"Уведомления"} navigation={navigation} location={""} />
+        <RowLink swiper={true} text={"Звук"} navigation={navigation} location={""} />
+        <RowLink swiper={false} text={"Помощь"} navigation={navigation} location={""} />
       </View>
       <TouchableHighlight
         onPress={() => {}}
