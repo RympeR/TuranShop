@@ -27,19 +27,23 @@ import { CommentBlock } from "../../components/CommentBlock";
 import { CheckedText } from "../../components/checkedText";
 
 const screenWidth = Dimensions.get("screen").width;
+const screenHeight = Dimensions.get("screen").height;
 
 const SingleProductPageScreen = ({ route, navigation }) => {
   const cm = computeMargin;
   const cmp = computeMarginScreenPercent;
   const cpmh = computePercentMaxHeight;
   const cp = computePadding;
+  const [description, setDescription] = useState(true);
+  const [characters, setCharacters] = useState(false);
+  const [comments, setComments] = useState(false);
 
   function rate_to_text() {
     let avg_rate = item.average_rate;
     if (avg_rate) {
-      if (avg_rate > 4) return 'Прекрасно!'
-      if (avg_rate > 3) return 'Хорошо!'
-      if (avg_rate > 2) return 'Так себе!'
+      if (avg_rate > 4) return "Прекрасно!";
+      if (avg_rate > 3) return "Хорошо!";
+      if (avg_rate > 2) return "Так себе!";
     }
     return 0;
   }
@@ -110,12 +114,14 @@ const SingleProductPageScreen = ({ route, navigation }) => {
         name: " another taet delivery",
       },
     ],
-    characteristics: '{"test": "test", "test1egroij egroerg": "test"}',
+    characteristics:
+      '{"test": "test", "test1egroij egroerg": "test", "test1egroij egroergsd": "test", "test1egroij egroerg3": "test"}',
     calc_price: 35,
     comments: [
       {
         id: 2,
-        comment: "Для жінок цей телефон в самий раз. Головні його переваги: \
+        comment:
+          "Для жінок цей телефон в самий раз. Головні його переваги: \
         'няшний' вигляд і вологостійкість. Це особливо актуально з наближенням пляжного сезону.",
         user: {
           pk: 2,
@@ -130,7 +136,40 @@ const SingleProductPageScreen = ({ route, navigation }) => {
       },
       {
         id: 2,
-        comment: "Для жінок цей телефон в самий раз. Головні його переваги: \
+        comment:
+          "Для жінок цей телефон в самий раз. Головні його переваги: \
+        'няшний' вигляд і вологостійкість. Це особливо актуально з наближенням пляжного сезону.",
+        user: {
+          pk: 2,
+          username: "test",
+          image:
+            "https://i.pinimg.com/originals/95/30/41/953041070f000d45c05c912005f63724.jpg",
+          verified: true,
+          fio: "test test",
+        },
+        card: 1,
+        datetime: 1629115607,
+      },
+      {
+        id: 2,
+        comment:
+          "Для жінок цей телефон в самий раз. Головні його переваги: \
+        'няшний' вигляд і вологостійкість. Це особливо актуально з наближенням пляжного сезону.",
+        user: {
+          pk: 2,
+          username: "test",
+          image:
+            "https://i.pinimg.com/originals/95/30/41/953041070f000d45c05c912005f63724.jpg",
+          verified: true,
+          fio: "test test",
+        },
+        card: 1,
+        datetime: 1629115607,
+      },
+      {
+        id: 2,
+        comment:
+          "Для жінок цей телефон в самий раз. Головні його переваги: \
         'няшний' вигляд і вологостійкість. Це особливо актуально з наближенням пляжного сезону.",
         user: {
           pk: 2,
@@ -182,7 +221,7 @@ const SingleProductPageScreen = ({ route, navigation }) => {
   let characteristics = JSON.parse(item.characteristics);
   let keys = Object.keys(characteristics);
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ position: "relative", height: screenHeight }}>
       <HeaderBack navigation={navigation} title={item.category.name} shop_ico />
       <ScrollView style={[cmp("t", 10)]}>
         <View style={[styles.center, styles.column]}>
@@ -213,187 +252,229 @@ const SingleProductPageScreen = ({ route, navigation }) => {
         >
           <View
             style={[
-              cm("l", 70),
-              styles.rotate_90,
-              styles.row,
-              { maxWidth: 20, zIndex: 2, translateX: 220, translateY: 10 },
+              cm("l", 30),
+              { position: "absolute", top: 130, left: 0, right: 0, bottom: 0 },
             ]}
           >
-            <TouchableHighlight
-              style={[{ height: 25, width: 60 }, cm("r", 20)]}
+            <View
+              style={[
+                styles.rotate_90,
+                styles.row,
+                {
+                  zIndex: 6,
+
+                  justifyContent: "center",
+                  alignItems: "center",
+                },
+              ]}
             >
-              <Text style={[, styles.text]}>Отзывы</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={[{ maxHeight: 25, width: 120 }, cm("r", 20)]}
-            >
-              <Text style={[styles.text]}>Характеристики</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={[{ maxHeight: 25, width: 60 }, cm("r", 20)]}
-            >
-              <Text style={[styles.text]}>Товар</Text>
-            </TouchableHighlight>
+              <TouchableHighlight
+                style={[{ height: 40, width: 100, backgroundColor:'red' }, cm("r", 20)]}
+                onPress={() => {
+                  setDescription(false);
+                  setCharacters(false);
+                  setComments(true);
+                }}
+              >
+                <Text style={[, styles.text]}>Отзывы</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={[{ height: 40, width: 120, backgroundColor:'red' }, cm("r", 20)]}
+                onPress={() => {
+                  setDescription(false);
+                  setCharacters(true);
+                  setComments(false);
+                }}
+              >
+                <Text style={[styles.text]}>Характеристики</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={[{ height: 40, width: 60, backgroundColor:'red' }, cm("r", 20)]}
+                onPress={() => {
+                  setDescription(true);
+                  setCharacters(false);
+                  setComments(false);
+                }}
+              >
+                <Text style={[styles.text]}>Товар</Text>
+              </TouchableHighlight>
+            </View>
           </View>
-          <View style={[styles.column, cm("l", -23), {
-            backgroundColor: '#F9FAFC',
-            borderTopLeftRadius: 15,
-            width: screenWidth * 0.8,
-            borderTopRightRadius: 15,
-          },
-          cp('l', 10),
-          cp('t', 10),
-          ]}>
+          <View
+            style={[
+              styles.column,
+              styles.center,
+
+              {
+                backgroundColor: "#F9FAFC",
+                borderTopLeftRadius: 15,
+                width: screenWidth * 0.8,
+                borderTopRightRadius: 15,
+              },
+              cmp("l", 16),
+              cp("t", 10),
+            ]}
+          >
             <View style={[styles.row]}>
-              <View style={[styles.column]}>
-                <Text style={[styles.blackSubtitle, cm("b", 5)]}>
-                  {item.title}
-                </Text>
-                <View style={[styles.row]}>
-                  {rate_icons}
-                  <Text style={[styles.font12Medium, cm("l", 5)]}>
-                    {item.average_rate}
+              {description && (
+                <View style={[styles.column, cm("l", 10)]}>
+                  <Text style={[styles.blackSubtitle, cm("b", 5)]}>
+                    {item.title}
                   </Text>
-                </View>
-                <View style={[styles.row, cm("t", 10)]}>
-                  <Text style={[styles.amountText, cm("l", 5)]}>
-                    {item.calc_price}$
-                  </Text>
-                  {item.present ? (
-                    <View style={[styles.row, cm("l", 100), cm("t", 10)]}>
-                      <Text style={[styles.greenText, cm("l", 5)]}>
-                        В наличии
+                  <View style={[styles.row]}>
+                    {rate_icons}
+                    <Text style={[styles.font12Medium, cm("l", 5)]}>
+                      {item.average_rate}
+                    </Text>
+                  </View>
+                  <View style={[styles.row, cm("t", 10)]}>
+                    <Text style={[styles.amountText, cm("l", 5)]}>
+                      {item.calc_price}$
+                    </Text>
+                    {item.present ? (
+                      <View style={[styles.row, cm("l", 100), cm("t", 10)]}>
+                        <Text style={[styles.greenText, cm("l", 5)]}>
+                          В наличии
+                        </Text>
+                        <Image
+                          style={[cm("t", 5), cm("l", 5)]}
+                          source={require("../../images/shop/checked.png")}
+                        />
+                      </View>
+                    ) : (
+                      <Text
+                        style={[styles.mediumText, cm("l", 100), cm("l", 5)]}
+                      >
+                        Не в наличии
                       </Text>
-                      <Image
-                        style={[cm("t", 5), cm("l", 5)]}
-                        source={require("../../images/shop/checked.png")}
+                    )}
+                  </View>
+                  <Text
+                    style={[styles.smallText, cm("t", 20), { opacity: 0.6 }]}
+                  >
+                    Описание
+                  </Text>
+                  <Text
+                    style={[
+                      styles.smallText,
+                      styles.descriptionBlock,
+                      cm("t", 20),
+                    ]}
+                  >
+                    {item.description}
+                  </Text>
+                  <Text
+                    style={[styles.smallText, cm("t", 20), { opacity: 0.6 }]}
+                  >
+                    Продавец
+                  </Text>
+                  <SellerBlockSmall
+                    id={"2"}
+                    image={require("../../images/shop/seller.png")}
+                    verified
+                    product_amount={120}
+                    rating={3.5}
+                    name={"tset seller"}
+                    navigation={navigation}
+                  />
+                  <Text style={[styles.title_18_medium, cm("b", 20)]}>
+                    Доставка
+                  </Text>
+                  <View style={[styles.column, cm("b", 20)]}>
+                    {item.deliver_methods.map((item, i) => (
+                      <CheckedText text={item.name} key={i} />
+                    ))}
+                  </View>
+                  <Text style={[styles.title_18_medium, cm("b", 20)]}>
+                    Оплата
+                  </Text>
+                  <View style={[styles.column, cm("b", 50)]}>
+                    {item.payment_methods.map((item, i) => (
+                      <CheckedText text={item.name} key={i} />
+                    ))}
+                  </View>
+                </View>
+              )}
+              {characters && (
+                <View style={[styles.column, cm("l", 10)]}>
+                  {keys.map((item, i) => (
+                    <View style={[styles.column]}>
+                      <View style={[styles.row, cm("b", 20), cm("t", 20)]}>
+                        <Text
+                          style={[
+                            styles.smallSBoldText,
+                            { maxWidth: 120 },
+                            cmp("r", 30),
+                          ]}
+                        >
+                          {item}
+                        </Text>
+                        <Text
+                          style={[
+                            styles.smallText,
+                            cmp("l", 40),
+                            styles.posAbsolute,
+                          ]}
+                        >
+                          {characteristics[item]}
+                        </Text>
+                      </View>
+                      <View
+                        style={{
+                          borderBottomColor: "black",
+                          borderBottomWidth: 1,
+                          width: screenWidth * 0.6,
+                        }}
                       />
                     </View>
-                  ) : (
-                    <Text style={[styles.mediumText, cm("l", 100), cm("l", 5)]}>
-                      Не в наличии
-                    </Text>
-                  )}
-                </View>
-                <Text style={[styles.smallText, cm("t", 20), { opacity: 0.6 }]}>
-                  Описание
-                </Text>
-                <Text
-                  style={[
-                    styles.smallText,
-                    styles.descriptionBlock,
-                    cm("t", 20),
-                  ]}
-                >
-                  {item.description}
-                </Text>
-                <Text style={[styles.smallText, cm("t", 20), { opacity: 0.6 }]}>
-                  Продавец
-                </Text>
-                <SellerBlockSmall
-                  id={"2"}
-                  image={require("../../images/shop/seller.png")}
-                  verified
-                  product_amount={120}
-                  rating={3.5}
-                  name={"tset seller"}
-                  navigation={navigation}
-                />
-                <Text style={[styles.title_18_medium, cm("b", 20)]}>
-                  Доставка
-                </Text>
-                <View style={[styles.column, cm("b", 20)]}>
-                  {item.deliver_methods.map((item, i) => (
-                    <CheckedText text={item.name} key={i} />
                   ))}
                 </View>
-                <Text style={[styles.title_18_medium, cm("b", 20)]}>
-                  Оплата
-                </Text>
-                <View style={[styles.column, cm("b", 50)]}>
-                  {item.payment_methods.map((item, i) => (
-                    <CheckedText text={item.name} key={i} />
-                  ))}
-                </View>
-              </View>
-              <View style={[styles.column, styles.displayNone]}>
-                {keys.map((item, i) => (
-                  <View style={[styles.column]}>
-                    <View
-                      style={[
-                        styles.row,
-                        cm("b", 20),
-                        cm("t", 20),
-                      ]}
+              )}
+              {comments && (
+                <View style={[styles.column, cm("l", 10)]}>
+                  <View style={[styles.row]}>
+                    <Text style={[styles.title_36]}>{item.average_rate}</Text>
+                    <Image
+                      source={require("../../images/shop/yellow_star.png")}
+                      style={[styles.ico15x15, cm("t", 20)]}
+                    />
+                    <Text
+                      style={[styles.smallBoldText, cm("t", 15), cm("l", 10)]}
                     >
-                      <Text
-                        style={[
-                          styles.smallSBoldText,
-                          { maxWidth: 120 },
-                          cmp("r", 30),
-                        ]}
-                      >
-                        {item}
-                      </Text>
-                      <Text style={[styles.smallText, cmp('l', 40), styles.posAbsolute]}>
-                        {characteristics[item]}
-                      </Text>
-                    </View>
-                    <View
-                      style={{
-                        borderBottomColor: "black",
-                        borderBottomWidth: 1,
-                        width: screenWidth * 0.6,
-                      }}
+                      {rate_to_text()}
+                    </Text>
+                    <Image
+                      style={[cmp("l", 16), cm("t", 10)]}
+                      source={require("../../images/shop/addCommentBtn.png")}
                     />
                   </View>
-                ))}
-              </View>
-              <View style={[styles.column, styles.displayNone]}>
-                <View style={[styles.row]}>
-                  <Text style={[styles.title_36]}>
-                    {item.average_rate}
+                  <Text style={[styles.smallBoldText, cm("b", 15)]}>
+                    {item.comments.length} отзывов
                   </Text>
-                  <Image
-                    source={require("../../images/shop/yellow_star.png")}
-                    style={[styles.ico15x15, cm('t', 20)]}
+                  <View
+                    style={[
+                      {
+                        borderBottomColor: "black",
+                        borderBottomWidth: 1,
+                        width: screenWidth * 0.77,
+                        opacity: 0.1,
+                      },
+                      cm("b", 20),
+                    ]}
                   />
-                  <Text style={[styles.smallBoldText, cm('t', 15), cm('l', 10)]}>
-                    {rate_to_text()}
-                  </Text>
-                  <Image
-                    style={[cmp('l', 16), cm('t', 10)]}
-                    source={require('../../images/shop/addCommentBtn.png')}
-                  />
+                  <View style={cm("b", 20)}>
+                    {item.comments.map((comment, ind) => (
+                      <CommentBlock
+                        id={comment.id}
+                        comment={comment.comment}
+                        user={comment.user}
+                        card={comment.card}
+                        datetime={comment.datetime}
+                      />
+                    ))}
+                  </View>
                 </View>
-                <Text style={[styles.smallBoldText, cm('b', 15)]}>
-                  {item.comments.length} отзывов
-                </Text>
-                <View
-                  style={[{
-                    borderBottomColor: "black",
-                    borderBottomWidth: 1,
-                    width: screenWidth * 0.77,
-                    opacity: 0.1
-                  },
-                  cm('b', 20)
-                  ]}
-                />
-                <View style={cm('b', 20 )}>
-
-                {
-                  item.comments.map((comment, ind) => (
-                    <CommentBlock
-                    id={comment.id}
-                    comment={comment.comment}
-                    user={comment.user}
-                    card={comment.card}
-                    datetime={comment.datetime}
-                    />
-                    ))
-                  }
-                </View>
-              </View>
+              )}
             </View>
           </View>
         </View>

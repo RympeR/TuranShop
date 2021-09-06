@@ -28,8 +28,9 @@ const RowLink = (props: rowLinkTextType) => {
     <View>
       <View style={[styles.row, cm("b", 15)]}>
         <TouchableHighlight
+        underlayColor={"#EFEEF2"}
           onPress={() => {
-            props.navigation.navigate(location);
+            props.navigation.navigate(props.location);
           }}
         >
           <Text style={[styles.font17SBoldBlack, cm("t", -5)]}>
@@ -48,9 +49,10 @@ const RowLink = (props: rowLinkTextType) => {
           />
         ) : (
           <TouchableHighlight
-            style={[cmp("l", 80), styles.posAbsolute]}
+            style={[cmp("l", 80), st .posAbsolute]}
+            underlayColor={"#EFEEF2"}
             onPress={() => {
-              props.navigation.navigate(location);
+              props.navigation.navigate(props.location);
             }}
           >
             <Image source={require("../images/shop/rightBlackArrow.png")} />

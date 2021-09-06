@@ -250,8 +250,6 @@ const styles = StyleSheet.create({
   },
   rotate_90: {
     transform: [{ rotate: '-90deg'}],
-    translateX: -OFFSET,
-    translateY: OFFSET
   },
   center: {
     justifyContent: "center",
@@ -744,7 +742,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 20,
   },
-  filterCategory: {},
+  filterCategory: {
+    backgroundColor: '#F7F7F7',
+    borderRadius: 15,
+    padding: 6,
+  },
   icon16: {
     height: 16,
     width: 16,
@@ -757,9 +759,15 @@ const styles = StyleSheet.create({
     width: 19,
   },
   gradient: {
-    minWidth: 25,
-    height: 25,
     borderRadius: 15,
+    padding: 6
+  },
+  applyFilterBlock: {
+    width: screenWidth,
+    height: 100,
+    backgroundColor:'#F7F7F7',
+    borderTopLeftRadius:30,
+    borderTopRightRadius:30,
   },
   productItemBlock: {
     width: 156,

@@ -27,7 +27,7 @@ import { loadProductsAsync } from "../../redux/reducers/product/product.thunks";
 import AppLoading from "expo-app-loading";
 import { data } from "../../redux/actions/testData";
 const screenWidth = Dimensions.get("screen").width;
-
+const screenHeight = Dimensions.get("screen").height;
 type ProductItemType = {
   image: string;
   name: string;
@@ -39,7 +39,10 @@ type ProductItemType = {
   reply_amount: number;
   main: boolean;
 };
-
+type orderStatusType = {
+  title: string;
+  active: boolean;
+};
 const ProductPageScreen = ({ route, navigation }) => {
   const modalizeRef = useRef<Modalize>(null);
   const onOpen = () => {
@@ -48,25 +51,85 @@ const ProductPageScreen = ({ route, navigation }) => {
   const onClose = () => {
     modalizeRef.current?.close();
   };
+
+  const [sortBy, setSortBy] = useState([
+    { title: "Ретйинг", active: true },
+    { title: "Популярные", active: false },
+    { title: "Новинки", active: false },
+    { title: "Акции", active: false },
+  ]);
+  const [status, setStatus] = useState([
+    { title: "Нет в наличии", active: false },
+    { title: "В наличии", active: false },
+    { title: "На складе", active: false },
+  ]);
+  const [brands, setBrands] = useState([
+    { title: "brand1", active: false },
+    { title: "brand2", active: false },
+    { title: "brand3", active: false },
+    { title: "brand4", active: false },
+  ]);
+  const [countries, setCountries] = useState([
+    { title: "country1", active: false },
+    { title: "country2", active: false },
+    { title: "country3", active: false },
+    { title: "country4", active: false },
+  ]);
+  const [active_filters, setActive_filters] = useState([""]);
+  const [productSearch, onChangeproductSearch] = useState("");
+  const [brandSearch, onChangeBrandSearch] = useState("");
+  const [countrySearch, onChangeCountrySearch] = useState("");
+  const [items, setItems] = useState(data);
+
+  // function applyFilters() {
+  //   let temp_filters = [];
+  //   for (const iterator of orderStatus) {
+  //     iterator.active ? temp_filters.push(iterator.title) : null;
+  //   }
+  //   setActive_filters(temp_filters);
+  // }
+
+  function filter_items(value) {
+    let lower_filters = active_filters.map((item, index) => item.toLowerCase());
+    if (lower_filters.includes(value.status)) return true;
+    if (lower_filters.includes("все")) return true;
+    if (lower_filters.includes("новые")) if (value.new) return true;
+    if (lower_filters.includes("")) return true;
+    return false;
+  }
+  function useForceUpdate() {
+    const [value, setValue] = useState(0); // integer state
+    return () => setValue((value) => value + 1); // update the state to force render
+  }
+  function reset() {
+    sortBy.map((item) => (item.active = false));
+    status.map((item) => (item.active = false));
+    brands.map((item) => (item.active = false));
+    countries.map((item) => (item.active = false));
+    setSortBy(sortBy);
+    setStatus(status);
+    setBrands(brands);
+    setCountries(countries);
+    setActive_filters([""]);
+    forceUpdate();
+  }
   const cm = computeMargin;
   const cp = computePadding;
   const cmp = computeMarginScreenPercent;
-  const [productSearch, onChangeproductSearch] = useState("");
-  const [showFilter, setShowFilter] = useState(false);
-  const [pressed, setPressed] = useState(false);
-  const [items, setItems] = useState(data);
 
-  const handleClick = () => {
-    setPressed(!pressed);
+  const forceUpdate = useForceUpdate();
+
+  const handleClickOrder = (item: orderStatusType) => {
+    // setPressed(!pressed);
   };
-
-  let filters = {
-    sortBy: false,
-    status: false,
-    new: false,
-    price: 0,
-    brand: false,
-    country_creator: false,
+  const handleClickStatus = (item: orderStatusType) => {
+    // setPressed(!pressed);
+  };
+  const handleClickBrand = (item: orderStatusType) => {
+    // setPressed(!pressed);
+  };
+  const handleClickCountry = (item: orderStatusType) => {
+    // setPressed(!pressed);
   };
 
   const dispatch = useDispatch();
@@ -75,16 +138,17 @@ const ProductPageScreen = ({ route, navigation }) => {
   }, [dispatch]);
   // const products = useSelector((state) => state.product.products);
   const products = data;
-  let sortBy: string[] = ["Ретйинг", "Популярные", "Акции", "Новинки"];
-  let brands: string[] = ["brand1", "brand2", "brand3", "brand4"];
-  let countries: string[] = ["country1", "country2", "country3", "country4"];
-  return (
-    <SafeAreaView>
-      <HeaderBack navigation={navigation} title={route.params.title} shop_ico />
 
+  return (
+    <SafeAreaView style={{ position: "relative", height: screenHeight }}>
+      {/* хэдер */}
+      <HeaderBack navigation={navigation} title={route.params.title} shop_ico />
+      {/* поиск */}
       <View style={[styles.row, cm("t", 70), cm("l", 10), cm("b", 20)]}>
         <View style={[styles.row]}>
-          <Icon name="search" style={styles.imageStyle} />
+          <View style={[styles.searchImgBack]}>
+            <Icon name="search" style={[styles.imageStyle, cm("t", 10)]} />
+          </View>
           <TextInput
             style={[styles.searchInput]}
             placeholder="Поиск"
@@ -105,70 +169,332 @@ const ProductPageScreen = ({ route, navigation }) => {
           />
         </TouchableHighlight>
       </View>
+
       <Modalize
-        scrollViewProps={{ showsVerticalScrollIndicator: false }}
+        // scrollViewProps={{ showsVerticalScrollIndicator: false }}
         ref={modalizeRef}
-        snapPoint={700}
+        snapPoint={screenHeight * 0.5}
         modalTopOffset={10}
-        modalHeight={800}
+        modalHeight={screenHeight * 0.9}
         // adjustToContentHeight
       >
-        <View style={[styles.row, cmp("t", 3)]}>
-          <Text style={[styles.regular600, cmp("l", 5)]}>Сортировка</Text>
-          <TouchableHighlight
-            onPress={onClose}
-            underlayColor={"#rgba(12, 121, 82, 1)"}
-            style={[cmp("l", 50), styles.border15, { width: 30 }]}
-          >
-            <Image source={require("../../images/shop/closeModal.png")} />
-          </TouchableHighlight>
-        </View>
-        <View style={[styles.row, { maxWidth: screenWidth * 0.8 }]}>
-          {sortBy.map((item: string, index: number) => (
+        <View style={[styles.column, cmp("b", 5)]}>
+          <View style={[styles.row, cmp("t", 3)]}>
+            <Text style={[styles.regular600, cmp("l", 5)]}>Сортировка</Text>
             <TouchableHighlight
-              key={index}
-              onPress={handleClick}
-              activeOpacity={0}
-              underlayColor={"#EFEEF2"}
-              style={[styles.ml20, styles.filterCategory]}
+              onPress={onClose}
+              underlayColor={"#rgba(12, 121, 82, 1)"}
+              style={[cmp("l", 50), styles.border15, { width: 30 }]}
             >
-              <>
-                {pressed && (
-                  <LinearGradient
-                    style={styles.gradient}
-                    colors={["#0C7952", "#289A71"]}
-                  >
+              <Image source={require("../../images/shop/closeModal.png")} />
+            </TouchableHighlight>
+          </View>
+          <View style={[styles.row, { flexWrap: "wrap" }]}>
+            {sortBy.map((item: orderStatusType, index: number) => (
+              <TouchableHighlight
+                key={index}
+                onPress={() => {
+                  handleClickOrder(item);
+                  forceUpdate();
+                }}
+                activeOpacity={0}
+                underlayColor={"#EFEEF2"}
+                style={[
+                  cm("l", 10),
+                  cm("t", 10),
+                  item.active ? { borderRadius: 15 } : styles.filterCategory,
+                ]}
+              >
+                <>
+                  {item.active ? (
+                    <LinearGradient
+                      style={styles.gradient}
+                      colors={["#0C7952", "#289A71"]}
+                    >
+                      <Text
+                        style={[
+                          styles.smallText,
+                          styles.mt2,
+                          styles.ml10,
+                          styles.pr8,
+                          { color: "#FFFFFF" },
+                        ]}
+                      >
+                        {item.title}
+                      </Text>
+                    </LinearGradient>
+                  ) : (
                     <Text
                       style={[
                         styles.smallText,
                         styles.mt2,
                         styles.ml10,
                         styles.pr8,
-                        { color: "#FFFFFF" },
                       ]}
                     >
-                      {item}
+                      {item.title}
                     </Text>
-                  </LinearGradient>
-                )}
-                {!pressed && (
+                  )}
+                </>
+              </TouchableHighlight>
+            ))}
+          </View>
+          <View style={[styles.row, cmp("t", 3)]}>
+            <Text style={[styles.regular600, cmp("l", 5)]}>Статус товара</Text>
+          </View>
+          <View style={[styles.row, { flexWrap: "wrap" }]}>
+            {status.map((item: orderStatusType, index: number) => (
+              <TouchableHighlight
+                key={index}
+                onPress={() => {
+                  handleClickOrder(item);
+                  forceUpdate();
+                }}
+                activeOpacity={0}
+                underlayColor={"#EFEEF2"}
+                style={[
+                  cm("l", 10),
+                  cm("t", 10),
+                  item.active ? { borderRadius: 15 } : styles.filterCategory,
+                ]}
+              >
+                <>
+                  {item.active ? (
+                    <LinearGradient
+                      style={styles.gradient}
+                      colors={["#0C7952", "#289A71"]}
+                    >
+                      <Text
+                        style={[
+                          styles.smallText,
+                          styles.mt2,
+                          styles.ml10,
+                          styles.pr8,
+                          { color: "#FFFFFF" },
+                        ]}
+                      >
+                        {item.title}
+                      </Text>
+                    </LinearGradient>
+                  ) : (
+                    <Text
+                      style={[
+                        styles.smallText,
+                        styles.mt2,
+                        styles.ml10,
+                        styles.pr8,
+                      ]}
+                    >
+                      {item.title}
+                    </Text>
+                  )}
+                </>
+              </TouchableHighlight>
+            ))}
+          </View>
+          <View style={[styles.row, cmp("t", 3)]}>
+            <Text style={[styles.regular600, cmp("l", 5)]}>Бренд</Text>
+          </View>
+          <View style={[styles.row, cmp("t", 3), cmp("l", 3)]}>
+            <View style={[styles.searchImgBack]}>
+              <Icon name="search" style={[styles.imageStyle, cm("t", 10)]} />
+            </View>
+            <TextInput
+              style={[styles.searchInput]}
+              placeholder="Поиск"
+              onChangeText={onChangeBrandSearch}
+              value={brandSearch}
+              placeholderTextColor="rgba(0, 0, 0, 1);"
+              selectTextOnFocus
+            />
+          </View>
+          <View style={[styles.row, { flexWrap: "wrap" }]}>
+            {brands.map((item: orderStatusType, index: number) => (
+              <TouchableHighlight
+                key={index}
+                onPress={() => {
+                  handleClickOrder(item);
+                  forceUpdate();
+                }}
+                activeOpacity={0}
+                underlayColor={"#EFEEF2"}
+                style={[
+                  cm("l", 10),
+                  cm("t", 10),
+                  item.active ? { borderRadius: 15 } : styles.filterCategory,
+                ]}
+              >
+                <>
+                  {item.active ? (
+                    <LinearGradient
+                      style={styles.gradient}
+                      colors={["#0C7952", "#289A71"]}
+                    >
+                      <Text
+                        style={[
+                          styles.smallText,
+                          styles.mt2,
+                          styles.ml10,
+                          styles.pr8,
+                          { color: "#FFFFFF" },
+                        ]}
+                      >
+                        {item.title}
+                      </Text>
+                    </LinearGradient>
+                  ) : (
+                    <Text
+                      style={[
+                        styles.smallText,
+                        styles.mt2,
+                        styles.ml10,
+                        styles.pr8,
+                      ]}
+                    >
+                      {item.title}
+                    </Text>
+                  )}
+                </>
+              </TouchableHighlight>
+            ))}
+          </View>
+          <View style={[styles.row, cmp("t", 3)]}>
+            <Text style={[styles.regular600, cmp("l", 5)]}>
+              Страна-производитель
+            </Text>
+          </View>
+          <View style={[styles.row, cmp("t", 3), cmp("l", 3)]}>
+            <View style={[styles.searchImgBack]}>
+              <Icon name="search" style={[styles.imageStyle, cm("t", 10)]} />
+            </View>
+            <TextInput
+              style={[styles.searchInput]}
+              placeholder="Поиск"
+              onChangeText={onChangeCountrySearch}
+              value={countrySearch}
+              placeholderTextColor="rgba(0, 0, 0, 1);"
+              selectTextOnFocus
+            />
+          </View>
+          <View style={[styles.row, { flexWrap: "wrap" }]}>
+            {countries.map((item: orderStatusType, index: number) => (
+              <TouchableHighlight
+                key={index}
+                onPress={() => {
+                  handleClickOrder(item);
+                  forceUpdate();
+                }}
+                activeOpacity={0}
+                underlayColor={"#EFEEF2"}
+                style={[
+                  cm("l", 10),
+                  cm("t", 10),
+                  item.active ? { borderRadius: 15 } : styles.filterCategory,
+                ]}
+              >
+                <>
+                  {item.active ? (
+                    <LinearGradient
+                      style={styles.gradient}
+                      colors={["#0C7952", "#289A71"]}
+                    >
+                      <Text
+                        style={[
+                          styles.smallText,
+                          styles.mt2,
+                          styles.ml10,
+                          styles.pr8,
+                          { color: "#FFFFFF" },
+                        ]}
+                      >
+                        {item.title}
+                      </Text>
+                    </LinearGradient>
+                  ) : (
+                    <Text
+                      style={[
+                        styles.smallText,
+                        styles.mt2,
+                        styles.ml10,
+                        styles.pr8,
+                      ]}
+                    >
+                      {item.title}
+                    </Text>
+                  )}
+                </>
+              </TouchableHighlight>
+            ))}
+            <View style={[styles.row, cm("t", 20), styles.applyFilterBlock]}>
+              <TouchableHighlight
+                // onPress={reset}
+                activeOpacity={0}
+                underlayColor={"rgba(0,0,0,0)"}
+                style={[cm("l", 20), cm("t", 20), { height: 57 }]}
+              >
+                <Image source={require("../../images/shop/reload.png")} />
+              </TouchableHighlight>
+              <TouchableHighlight
+                // onPress={applyFilters}
+                style={[
+                  cm("l", 15),
+                  cm("t", 20),
+                  styles.SingleBtnBlock,
+                  { width: 254 },
+                ]}
+              >
+                <View style={[styles.fl1, styles.row, styles.center]}>
+                  <Text style={[styles.font17SBold, styles.center]}>
+                    Применить
+                  </Text>
+                </View>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+      </Modalize>
+      {/* фильтры */}
+      <View style={[styles.row, { flexWrap: "wrap" }, cm("b", 20)]}>
+        {active_filters
+          .filter((value: string) => value != "")
+          .map((item, index) => (
+            <TouchableHighlight
+              key={index}
+              onPress={() => {
+                // handleClick(item);
+                forceUpdate();
+              }}
+              activeOpacity={0}
+              underlayColor={"#EFEEF2"}
+              style={[cm("l", 10), cm("t", 10), { borderRadius: 15 }]}
+            >
+              <View style={[styles.row]}>
+                <LinearGradient
+                  style={styles.gradient}
+                  colors={["#0C7952", "#289A71"]}
+                >
                   <Text
                     style={[
                       styles.smallText,
                       styles.mt2,
                       styles.ml10,
                       styles.pr8,
+                      { color: "#FFFFFF" },
                     ]}
                   >
                     {item}
                   </Text>
-                )}
-              </>
+                </LinearGradient>
+                <Image source={require("../../images/shop/x.png")} />
+              </View>
             </TouchableHighlight>
           ))}
-        </View>
-      </Modalize>
-      <ScrollView  style={[cm('b', 170)]}>
+      </View>
+
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={[cm("b", 40), cm("l", -7)]}
+      >
         <View>
           <FlatList
             data={items.filter((item: any) =>
@@ -194,7 +520,6 @@ const ProductPageScreen = ({ route, navigation }) => {
           />
         </View>
       </ScrollView>
-      
     </SafeAreaView>
   );
 };

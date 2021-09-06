@@ -26,7 +26,7 @@ import { modalStyle } from "../../styles/modalStyle";
 const screenWidth = Dimensions.get("screen").width;
 const screenHeight = Dimensions.get("screen").height;
 
-const ShopOrderScreen = ({ route, navigation }) => {
+const ClientOrderScreen = ({ route, navigation }) => {
   const cm = computeMargin;
   const cp = computePadding;
   const cmp = computeMarginScreenPercent;
@@ -489,4 +489,4 @@ const ShopOrderScreen = ({ route, navigation }) => {
   );
 };
 
-export { ShopOrderScreen };
+export { ClientOrderScreen };

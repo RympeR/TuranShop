@@ -90,7 +90,7 @@ const SettingsScreen = ({ route, navigation }) => {
         <RowLink swiper={false} text={"Личные данные"} navigation={navigation} location={""} />
         <RowLink swiper={false} text={"Кошельки"} navigation={navigation} location={""} />
         <RowLink swiper={false} text={"Безопасность"} navigation={navigation} location={""} />
-        <RowLink swiper={false} text={"Мои заказы"} navigation={navigation} location={""} />
+        <RowLink swiper={false} text={"Мои заказы"} navigation={navigation} location={"client-orders"} />
         <RowLink swiper={false} text={"Избранное"} navigation={navigation} location={""} />
         <RowLink swiper={true} text={"Уведомления"} navigation={navigation} location={""} />
         <RowLink swiper={true} text={"Звук"} navigation={navigation} location={""} />

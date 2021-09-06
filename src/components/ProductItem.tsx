@@ -39,6 +39,7 @@ const ProductItem = (props: ProductItemType) => {
   return (
     <TouchableHighlight
       style={[styles.productItemBlock, cm("b", 30)]}
+      underlayColor={"#EFEEF2"}
       onPress={() => {
         move_to("product", props.navigation, { id: props.id });
       }}
