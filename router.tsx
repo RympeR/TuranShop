@@ -15,6 +15,7 @@ import { OrdersView } from "./src/screens/shop/Orders";
 import { ShopOrderScreen } from "./src/screens/shop/ShopOrderScreen";
 import { ClientOrderScreen } from "./src/screens/shop/ClientOrderScreen";
 import { SellerRateScreen } from "./src/screens/shop/SellerRate";
+import { ProductCommentsScreen } from "./src/screens/shop/ProductCommentsScreen";
 import { ShopRegistryWelcome } from "./src/screens/shop/shop/ShopRegistryWelcome";
 import { LogoRegistryStep } from "./src/screens/shop/shop/ShopRegisterStep2";
 import { FirstRegistryStep } from "./src/screens/shop/shop/ShopRegisterStep1";
@@ -114,6 +115,11 @@ export default function Navigate() {
         <Stack.Screen
           name="shop-registry-finish-step"
           component={ShopRegistryFinish}
+          options={{ headerShown: false, title: "Товар" }}
+        />
+        <Stack.Screen
+          name="product-comments"
+          component={ProductCommentsScreen}
           options={{ headerShown: false, title: "Товар" }}
         />
       </Stack.Navigator>

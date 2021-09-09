@@ -34,9 +34,9 @@ const SingleProductPageScreen = ({ route, navigation }) => {
   const cmp = computeMarginScreenPercent;
   const cpmh = computePercentMaxHeight;
   const cp = computePadding;
-  const [description, setDescription] = useState(true);
+  const [description, setDescription] = useState(false);
   const [characters, setCharacters] = useState(false);
-  const [comments, setComments] = useState(false);
+  const [comments, setComments] = useState(true);
 
   function rate_to_text() {
     let avg_rate = item.average_rate;
@@ -269,7 +269,10 @@ const SingleProductPageScreen = ({ route, navigation }) => {
               ]}
             >
               <TouchableHighlight
-                style={[{ height: 40, width: 100, backgroundColor:'red' }, cm("r", 20)]}
+                style={[
+                  { height: 40, width: 100, backgroundColor: "red" },
+                  cm("r", 20),
+                ]}
                 onPress={() => {
                   setDescription(false);
                   setCharacters(false);
@@ -279,7 +282,10 @@ const SingleProductPageScreen = ({ route, navigation }) => {
                 <Text style={[, styles.text]}>Отзывы</Text>
               </TouchableHighlight>
               <TouchableHighlight
-                style={[{ height: 40, width: 120, backgroundColor:'red' }, cm("r", 20)]}
+                style={[
+                  { height: 40, width: 120, backgroundColor: "red" },
+                  cm("r", 20),
+                ]}
                 onPress={() => {
                   setDescription(false);
                   setCharacters(true);
@@ -289,7 +295,10 @@ const SingleProductPageScreen = ({ route, navigation }) => {
                 <Text style={[styles.text]}>Характеристики</Text>
               </TouchableHighlight>
               <TouchableHighlight
-                style={[{ height: 40, width: 60, backgroundColor:'red' }, cm("r", 20)]}
+                style={[
+                  { height: 40, width: 60, backgroundColor: "red" },
+                  cm("r", 20),
+                ]}
                 onPress={() => {
                   setDescription(true);
                   setCharacters(false);
@@ -443,10 +452,18 @@ const SingleProductPageScreen = ({ route, navigation }) => {
                     >
                       {rate_to_text()}
                     </Text>
-                    <Image
-                      style={[cmp("l", 16), cm("t", 10)]}
-                      source={require("../../images/shop/addCommentBtn.png")}
-                    />
+                    <TouchableHighlight
+                      onPress={()=>(navigation.navigate('product-comments', {
+                        comments: item.comments,
+                        rates: item.rate,
+                      })) }
+                      underlayColor={'rgba(0,0,0,0)'}
+                    >
+                      <Image
+                        style={[cmp("l", 16), cm("t", 10)]}
+                        source={require("../../images/shop/addCommentBtn.png")}
+                      />
+                    </TouchableHighlight>
                   </View>
                   <Text style={[styles.smallBoldText, cm("b", 15)]}>
                     {item.comments.length} отзывов

@@ -422,6 +422,10 @@ const styles = StyleSheet.create({
     width: 33,
     height: 33,
   },
+  logo58x58: {
+    width: 58,
+    height: 58,
+  },
   cirle_logo95x95: {
     width: 95,
     height: 95,
@@ -548,6 +552,13 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor:'#289A82',
     borderWidth: 1,
+    borderStyle: 'solid',
+  },
+  borderInputStyle: {
+    borderRadius: 15,
+    borderColor:'#289A82',
+    borderWidth: 1,
+    width: screenWidth * 0.805,
     borderStyle: 'solid',
   },
   greenText: {
@@ -681,9 +692,15 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 2,
     borderRadius: 7,
-    width: 122,
+    maxWidth: 155,
     height: 52,
   },
+  activityIndicatorContainer:{
+    backgroundColor: "#fff",
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+},
   categoryTitle: {
     marginTop: 9,
     fontFamily: "mt-medium",
@@ -847,6 +864,18 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     margin: 10,
   },
+  commentInputBlock: {
+    width: '100%',
+    height: 90,
+    backgroundColor: "#F7F7F7",
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+  },
+  smallProductBLock : {
+    width: screenWidth * 0.9,
+    height: 80,
+    backgroundColor: "#F7F7F7",
+  }
 });
 
 export {
